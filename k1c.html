@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي حراس المرمى كيبر ون</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            touch-action: manipulation;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: flex;
+        }
+        .btn-game {
+            transition: all 0.3s ease;
+        }
+        .btn-game:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .feedback-message {
+            animation: fadeInOut 3s forwards;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translateY(20px); }
+            10%, 90% { opacity: 1; transform: translateY(0); }
+        }
+        .pop-feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pop-out 1.5s ease-out forwards;
+            font-size: 2.5rem;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        @keyframes pop-out {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(1.5); opacity: 0; }
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+
+    <div id="app-container" class="min-h-screen flex flex-col items-center justify-center p-4">
+
+        <!-- ===== صفحة القائمة الرئيسية ===== -->
+        <div id="page-menu" class="page active flex-col items-center justify-center w-full max-w-2xl text-center">
+            <img src="https://placehold.co/150x150/1a202c/ffffff?text=K1" alt="شعار K1" class="rounded-full mb-4 border-4 border-yellow-400">
+            <h1 class="text-4xl md:text-5xl font-black text-yellow-400 mb-1">keeper one Challenge</h1>
+            <p class="text-2xl text-gray-300 mb-8">تحدي الحراس من كيبر ون</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                <button onclick="app.prepareGame('game1')" class="btn-game bg-blue-600 p-4 rounded-lg text-xl font-bold">1. تحدي ردة الفعل ⚡</button>
+                <button onclick="app.prepareGame('game2')" class="btn-game bg-green-600 p-4 rounded-lg text-xl font-bold">2. اختر الأصغر / الأكبر ⚖️</button>
+                <button onclick="app.prepareGame('game3')" class="btn-game bg-red-600 p-4 rounded-lg text-xl font-bold">3. التوقيت المثالي 🎯</button>
+                <button onclick="app.prepareGame('game4')" class="btn-game bg-purple-600 p-4 rounded-lg text-xl font-bold">4. تحدي الكلمة واللون 🎨</button>
+                <button onclick="app.prepareGame('game5')" class="btn-game bg-orange-500 p-4 rounded-lg text-xl font-bold">5. تحدي الحراس 👥</button>
+            </div>
+            <div class="w-full max-w-xs mx-auto mt-8 space-y-4">
+                <button onclick="app.showLeaderboard()" class="btn-game bg-yellow-400 text-gray-900 py-3 px-10 rounded-lg text-xl font-bold w-full">
+                    🏆 لوحة الصدارة 
+                </button>
+                <a href="https://Keeper-1.com" target="_blank" class="btn-game bg-white text-gray-900 py-3 px-10 rounded-lg text-xl font-bold block w-full">
+                    🧤 زيارة متجر كيبر ون
+                </a>
+                <button onclick="app.showPage('instructions')" class="btn-game bg-gray-200 text-gray-900 py-3 px-10 rounded-lg text-xl font-bold w-full">
+                    📜 تعليمات الألعاب
+                </button>
+            </div>
+            <div class="mt-8">
+                <p class="text-gray-400 mb-4">تابعنا على حساباتنا</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.instagram.com/keeper1gk" target="_blank" title="Instagram" class="text-gray-400 hover:text-white transition">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zm0 1.62c-2.403 0-2.748.01-3.727.058-1.274.058-2.164.28-2.923.578a3.27 3.27 0 00-1.18 1.18 3.27 3.27 0 00-.578 2.923c-.048.98-.058 1.324-.058 3.727s.01 2.748.058 3.727c.058 1.274.28 2.164.578 2.923a3.27 3.27 0 001.18 1.18 3.27 3.27 0 002.923.578c.98.048 1.324.058 3.727.058s2.748-.01 3.727-.058c1.274-.058 2.164-.28 2.923-.578a3.27 3.27 0 001.18-1.18 3.27 3.27 0 00.578-2.923c.048-.98.058-1.324.058-3.727s-.01-2.748-.058-3.727c-.058-1.274-.28-2.164-.578-2.923a3.27 3.27 0 00-1.18-1.18 3.27 3.27 0 00-2.923-.578c-.98-.048-1.324-.058-3.727-.058zM12 8.25a5.75 5.75 0 100 11.5 5.75 5.75 0 000-11.5zM12 18a4.125 4.125 0 110-8.25 4.125 4.125 0 010 8.25zm6.32-10.875a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clip-rule="evenodd" /></svg>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                    <a href="https://www.snapchat.com/add/keeper1gk" target="_blank" title="Snapchat" class="text-gray-400 hover:text-white transition">
+                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.927 2.003c-2.313 0-4.143.27-5.22.813-.812.427-1.427.96-1.89 1.547-.48.601-.76 1.348-.76 2.133 0 .934.333 1.767.973 2.44.626.66 1.447 1.026 2.466 1.026a3.15 3.15 0 002.22-.893c.294.213.6.4.92.56.32.16.647.28.98.36.267.067.534.1.8.1.347 0 .687-.047 1.02-.14.333-.093.633-.233.9-.42l.14.16c.454.56.994.947 1.62 1.16.627.213 1.28.213 1.96-.026a3.5 3.5 0 001.62-1.254c.427-.64.64-1.387.64-2.24 0-.92-.327-1.74-.98-2.46-.653-.72-1.5-1.12-2.54-1.2l-1.02-.08c-.453-.04-.84-.16-1.16-.36-.32-.2-.56-.493-.72-.88-.067-.227-.1-.48-.1-.76 0-.587.213-1.114.64-1.58.427-.467.96-.7 1.6-.7.493 0 .94.12 1.34.36.4.24.733.56.994.96.28-.427.42-.9.42-1.414 0-.667-.22-1.28-.66-1.84-.44-.56-1.02-.987-1.74-1.28-1.44-.6-3.48-.9-6.12-.9zM8.32 15.22c-1.28 0-2.346.84-2.346 1.88 0 1.04.92 1.88 2.06 1.88 1.146 0 2.066-.84 2.066-1.88 0-1.04-1.066-1.88-2.386-1.88zm7.36 0c-1.28 0-2.346.84-2.346 1.88 0 1.04.92 1.88 2.06 1.88 1.146 0 2.066-.84 2.066-1.88 0-1.04-1.066-1.88-2.386-1.88z"/></svg>
+                        <span class="sr-only">Snapchat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== صفحة التعليمات ===== -->
+        <div id="page-instructions" class="page flex-col items-center w-full max-w-3xl px-4">
+            <h2 class="text-4xl font-black text-yellow-400 mb-6">📜 تعليمات الألعاب</h2>
+            <div class="w-full bg-gray-800 p-6 rounded-lg space-y-6 overflow-y-auto max-h-[70vh] text-right">
+                <div class="border-b border-gray-700 pb-4">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">1. تحدي ردة الفعل ⚡</h3>
+                    <p><strong>الهدف:</strong> قياس سرعة استجابتك. عندما يتغير لون الدائرة، اضغط على الزر الملون المطابق بأسرع وقت. اللعبة من 5 جولات ونتيجتك هي متوسط زمن الاستجابة. كلما قل الزمن، كنت أفضل!</p>
+                </div>
+                <div class="border-b border-gray-700 pb-4">
+                    <h3 class="text-2xl font-bold text-green-400 mb-2">2. اختر الأصغر / الأكبر ⚖️</h3>
+                    <p><strong>الهدف:</strong> سرعة اتخاذ القرار. ستظهر تعليمة ("اختر الأكبر" أو "الأصغر") وشكلين. اضغط على الشكل الصحيح. لديك 30 ثانية لتجميع أكبر عدد من النقاط (صحيحة +10، خاطئة -5).</p>
+                </div>
+                <div class="border-b border-gray-700 pb-4">
+                    <h3 class="text-2xl font-bold text-red-400 mb-2">3. التوقيت المثالي 🎯</h3>
+                    <p><strong>الهدف:</strong> الدقة في التوقيت. سيظهر رقم عشوائي، وعليك إيقاف العداد عند هذا الرقم بالضبط. اللعبة من 5 جولات. كلما كنت أقرب للرقم الهدف، حصلت على نقاط أكثر.</p>
+                </div>
+                <div class="border-b border-gray-700 pb-4">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">4. تحدي الكلمة واللون 🎨</h3>
+                    <p><strong>الهدف:</strong> التركيز وتجاهل المشتتات. سيظهر شكل ملون وبداخله اسم لون. عليك الضغط على الزر الذي يطابق <span class="font-bold text-yellow-400">الكلمة المكتوبة</span> وليس لون الشكل. لديك 30 ثانية لتجميع النقاط.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">5. تحدي الحراس 👥</h3>
+                    <p><strong>الهدف:</strong> السرعة والتفكير العكسي. سيظهر لون في الأعلى، وعلى اللاعبين الضغط على اللون المعاكس له (أبيض-أسود، أحمر-أزرق، أصفر-أخضر). بعد كل ضغطة، يتم تحديد من ضغط أولاً لتسجيل النقطة له.</p>
+                </div>
+            </div>
+            <button onclick="app.showPage('menu')" class="btn-game bg-yellow-400 text-gray-900 mt-8 py-3 px-10 rounded-lg text-xl font-bold">العودة للقائمة</button>
+        </div>
+
+        <!-- ===== صفحة تسجيل البيانات ===== -->
+        <div id="page-user-info" class="page flex-col items-center justify-center w-full max-w-md">
+            <h2 class="text-3xl font-bold mb-6 text-yellow-400">تسجيل بيانات البطل</h2>
+            <form id="user-info-form" class="w-full">
+                <input type="text" id="playerName" placeholder="الاسم" class="w-full p-3 mb-4 bg-gray-800 border-2 border-gray-700 rounded-lg text-white text-center" required>
+                <input type="tel" id="playerPhone" placeholder="رقم الجوال" class="w-full p-3 mb-6 bg-gray-800 border-2 border-gray-700 rounded-lg text-white text-center" required>
+                <button type="submit" class="w-full bg-green-500 p-4 rounded-lg text-xl font-bold">إبدأ اللعب</button>
+            </form>
+             <button onclick="app.showPage('menu')" class="mt-4 text-gray-400">العودة للقائمة</button>
+        </div>
+        
+        <!-- ===== اللعبة 1: تحدي ردة الفعل ===== -->
+        <div id="page-game1" class="page flex-col items-center justify-center w-full text-center">
+            <button onclick="app.quitGame()" class="absolute top-4 left-4 bg-gray-700 py-2 px-4 rounded-lg">العودة للقائمة</button>
+            <div class="relative w-full flex flex-col items-center">
+                <div id="game1-display" class="w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center mb-4" style="background-color: #374151;">
+                    <span id="game1-feedback" class="text-2xl font-bold"></span>
+                    <div id="game1-pop-feedback-container"></div>
+                </div>
+                <div id="game1-buttons" class="grid grid-cols-2 gap-4 w-full max-w-md">
+                    <button data-color="red" class="h-24 bg-red-600 rounded-lg"></button>
+                    <button data-color="blue" class="h-24 bg-blue-600 rounded-lg"></button>
+                    <button data-color="green" class="h-24 bg-green-600 rounded-lg"></button>
+                    <button data-color="yellow" class="h-24 bg-yellow-400 rounded-lg"></button>
+                </div>
+                <p id="game1-round" class="mt-4 text-xl">الجولة: 1 / 5</p>
+                <div id="game1-instructions" class="mt-2 text-lg text-gray-300">عندما يتغير لون الدائرة، اضغط على الزر المطابق بأسرع ما يمكن!</div>
+                <div id="game1-results-container" class="mt-4 w-full max-w-md"></div>
+            </div>
+        </div>
+
+        <!-- ===== اللعبة 2: اختر الأصغر / الأكبر ===== -->
+        <div id="page-game2" class="page flex-col items-center justify-center w-full text-center">
+            <button onclick="app.quitGame()" class="absolute top-4 left-4 bg-gray-700 py-2 px-4 rounded-lg">العودة للقائمة</button>
+            <div class="w-full flex justify-between items-center max-w-md mb-4">
+                <p id="game2-score" class="text-xl font-bold">النقاط: 0</p>
+                <p id="game2-timer" class="text-xl font-bold bg-yellow-400 text-gray-900 px-4 py-1 rounded-full">00:30</p>
+            </div>
+            <h2 id="game2-instruction" class="text-4xl font-black mb-8 text-yellow-400"></h2>
+            <div id="game2-shapes" class="flex items-center justify-center gap-8 mb-8">
+                <div id="game2-shape1" class="cursor-pointer rounded-lg transition-transform duration-200 hover:scale-110"></div>
+                <div id="game2-shape2" class="cursor-pointer rounded-lg transition-transform duration-200 hover:scale-110"></div>
+            </div>
+             <div id="game2-feedback" class="text-2xl font-bold h-10 mt-4"></div>
+        </div>
+        
+        <!-- ===== اللعبة 3: التوقيت المثالي ===== -->
+        <div id="page-game3" class="page flex-col items-center justify-center w-full max-w-lg text-center">
+            <button onclick="app.quitGame()" class="absolute top-4 left-4 bg-gray-700 py-2 px-4 rounded-lg">العودة للقائمة</button>
+            <div class="w-full flex justify-between items-center mb-4">
+                <p id="game3-round" class="text-xl font-bold">الجولة: 1 / 5</p>
+                <p id="game3-score" class="text-xl font-bold">النقاط: 0</p>
+            </div>
+            <p class="text-xl mb-4">اضغط على الزر عندما يصل العداد إلى:</p>
+            <p id="game3-target-time" class="text-6xl font-black text-yellow-400 mb-6"></p>
+            <div class="w-full bg-gray-700 rounded-full h-4 mb-4">
+                <div id="game3-timing-bar" class="bg-green-500 h-4 rounded-full" style="width: 0%"></div>
+            </div>
+            <p id="game3-current-time" class="text-4xl font-mono mb-6">0.00</p>
+            <button id="game3-button" class="bg-blue-600 text-white font-bold py-6 px-12 rounded-full text-2xl">إضغط!</button>
+            <div id="game3-feedback" class="text-xl font-bold h-10 mt-6"></div>
+            <div id="game3-results-container" class="mt-4 w-full"></div>
+        </div>
+
+        <!-- ===== اللعبة 4: تحدي الكلمة واللون ===== -->
+        <div id="page-game4" class="page flex-col items-center justify-center w-full text-center">
+            <button onclick="app.quitGame()" class="absolute top-4 left-4 bg-gray-700 py-2 px-4 rounded-lg">العودة للقائمة</button>
+            <div class="w-full flex justify-between items-center max-w-md mb-4">
+                <p id="game4-score" class="text-xl font-bold">النقاط: 0</p>
+                <p id="game4-timer" class="text-xl font-bold bg-yellow-400 text-gray-900 px-4 py-1 rounded-full">00:30</p>
+            </div>
+             <h2 class="text-3xl font-bold mb-4">اضغط على الزر المطابق لـ <span class="text-yellow-400">الكلمة المكتوبة</span></h2>
+            <div id="game4-shape" class="w-64 h-40 md:w-80 md:h-48 rounded-lg flex items-center justify-center mb-8">
+                <span id="game4-word" class="text-5xl font-black" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"></span>
+            </div>
+            <div id="game4-buttons" class="grid grid-cols-3 gap-4 w-full max-w-lg">
+                <!-- Buttons will be generated by JS -->
+            </div>
+             <div id="game4-feedback" class="text-2xl font-bold h-10 mt-4"></div>
+             <div id="game4-results-container" class="mt-4 w-full max-w-md text-sm"></div>
+        </div>
+
+        <!-- ===== اللعبة 5: تحدي الحراس (إعداد) ===== -->
+        <div id="page-game5-setup" class="page flex-col items-center justify-center w-full max-w-md">
+             <h2 class="text-3xl font-bold mb-6 text-yellow-400">تحدي الحراس</h2>
+             <form id="game5-setup-form" class="w-full">
+                 <input type="text" id="player1Name" placeholder="اسم الحارس الأول" class="w-full p-3 mb-4 bg-gray-800 border-2 border-gray-700 rounded-lg text-white text-center" required>
+                 <input type="text" id="player2Name" placeholder="اسم الحارس الثاني" class="w-full p-3 mb-6 bg-gray-800 border-2 border-gray-700 rounded-lg text-white text-center" required>
+                 <button type="submit" class="w-full bg-green-500 p-4 rounded-lg text-xl font-bold">بدء التحدي</button>
+             </form>
+             <button onclick="app.showPage('menu')" class="mt-4 text-gray-400">العودة للقائمة</button>
+        </div>
+
+        <!-- ===== اللعبة 5: تحدي الحراس (لعب) ===== -->
+        <div id="page-game5-play" class="page flex-col items-center justify-center w-full text-center relative">
+            <button onclick="app.quitGame()" class="absolute top-4 left-4 bg-gray-700 py-2 px-4 rounded-lg">العودة للقائمة</button>
+            <div class="w-full flex justify-between items-center mb-4 px-4 max-w-2xl">
+                <div id="game5-player1-score" class="text-lg font-bold"></div>
+                <div id="game5-player2-score" class="text-lg font-bold"></div>
+            </div>
+            <p class="text-2xl mb-2">اضغط على اللون <span class="font-bold">المعاكس</span> للون:</p>
+            <div id="game5-target-color" class="w-48 h-24 rounded-lg mb-6 mx-auto"></div>
+            <div id="game5-feedback" class="text-2xl font-bold h-10 mb-6"></div>
+
+            <!-- Player Selector Modal -->
+            <div id="game5-player-selector" class="absolute inset-0 bg-black bg-opacity-80 flex-col items-center justify-center hidden">
+                <h3 class="text-3xl font-bold mb-6 text-yellow-400">من هو اللاعب الذي ضغط؟</h3>
+                <div class="flex gap-4">
+                    <button id="game5-select-p1" class="bg-blue-600 p-4 rounded-lg text-xl font-bold"></button>
+                    <button id="game5-select-p2" class="bg-red-600 p-4 rounded-lg text-xl font-bold"></button>
+                </div>
+            </div>
+
+            <div id="game5-buttons-container" class="grid grid-cols-3 gap-4 w-full max-w-2xl">
+                 <button data-color="white" class="h-24 bg-white rounded-lg border-4 border-transparent"></button>
+                 <button data-color="black" class="h-24 bg-black rounded-lg border-4 border-transparent"></button>
+                 <button data-color="red" class="h-24 bg-red-600 rounded-lg border-4 border-transparent"></button>
+                 <button data-color="blue" class="h-24 bg-blue-600 rounded-lg border-4 border-transparent"></button>
+                 <button data-color="yellow" class="h-24 bg-yellow-400 rounded-lg border-4 border-transparent"></button>
+                 <button data-color="green" class="h-24 bg-green-600 rounded-lg border-4 border-transparent"></button>
+            </div>
+            <p class="mt-4 text-gray-400">الأسرع في الضغط على الإجابة الصحيحة يحصل على النقطة!</p>
+        </div>
+        
+        <!-- ===== صفحة لوحة الصدارة ===== -->
+        <div id="page-leaderboard" class="page flex-col items-center w-full max-w-4xl px-2">
+            <h2 class="text-4xl font-black text-yellow-400 mb-6">🏆 لوحة الصدارة 🏆</h2>
+            <div class="w-full mb-4">
+                <select id="leaderboard-game-select" class="w-full p-3 bg-gray-800 border-2 border-gray-700 rounded-lg text-white">
+                    <option value="game1">تحدي ردة الفعل (الأقل هو الأفضل)</option>
+                    <option value="game2">اختر الأصغر / الأكبر</option>
+                    <option value="game3">التوقيت المثالي</option>
+                    <option value="game4">تحدي الكلمة واللون</option>
+                    <option value="game5">تحدي الحراس (لاعبان)</option>
+                </select>
+            </div>
+            <div class="w-full overflow-x-auto">
+                 <table class="w-full text-center bg-gray-800 rounded-lg">
+                    <thead class="border-b-2 border-yellow-400">
+                        <tr>
+                            <th class="p-3">الترتيب</th>
+                            <th class="p-3">الاسم</th>
+                            <th class="p-3">النتيجة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-table-body">
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="app.showPage('menu')" class="btn-game bg-yellow-400 text-gray-900 mt-8 py-3 px-10 rounded-lg text-xl font-bold">العودة للقائمة</button>
+        </div>
+
+        <!-- ===== شاشة نهاية اللعبة (مودال) ===== -->
+        <div id="page-end-game-summary" class="page modal-overlay flex-col items-center justify-center">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-2xl w-11/12 max-w-md text-center">
+                <h2 id="end-game-title" class="text-3xl font-bold mb-4 text-yellow-400">انتهى التحدي!</h2>
+                <div id="end-game-results" class="text-xl mb-6 whitespace-pre-wrap"></div>
+                <button id="send-results-btn" class="w-full bg-green-500 p-4 rounded-lg text-xl font-bold mb-4">إرسال النتيجة إلى لوحة الصدارة</button>
+                <p id="send-status-msg" class="h-6 mb-4"></p>
+                <button onclick="app.showPage('menu')" class="w-full bg-gray-600 p-3 rounded-lg text-lg">العودة للقائمة الرئيسية</button>
+            </div>
+        </div>
+
+        <!-- Feedback Message Container -->
+        <div id="feedback-container" class="fixed bottom-5 right-5 text-center z-50"></div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, push, get, query, orderByChild, limitToLast, set } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVxjYN8Wt745MTnTfh9v7dF6fuJGo9lu0",
+            authDomain: "k1challenge-6ccdd.firebaseapp.com",
+            databaseURL: "https://k1challenge-6ccdd-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "k1challenge-6ccdd",
+            storageBucket: "k1challenge-6ccdd.appspot.com",
+            messagingSenderId: "872868888108",
+            appId: "1:872868888108:web:0637a582e55267e4169b89",
+            measurementId: "G-2PX0QX0PLZ"
+        };
+
+        let appFirebase, db;
+        (async () => {
+            try {
+                appFirebase = initializeApp(firebaseConfig);
+                db = getDatabase(appFirebase);
+                const auth = getAuth(appFirebase);
+                await signInAnonymously(auth);
+                console.log("Signed in anonymously");
+            } catch (e) {
+                console.error("Firebase initialization or sign-in failed.", e);
+                setTimeout(() => alert("فشل الاتصال بـ Firebase. يرجى التأكد من صحة بيانات الإعدادات (firebaseConfig) في الكود، وتفعيل 'Anonymous sign-in' في لوحة تحكم Firebase."), 100);
+            }
+        })();
+
+        const correctMessages = [
+            "أداء أسطوري! 🦸‍♂️ قفازات كيبر ون تليق بالأبطال!", "تصدي عالمي! 🌍 أنت مستقبل الحراسة!",
+            "ردة فعل البرق! ⚡️ مع كيبر ون أنت في أمان!", "تركيز من حديد! 💪 لا شيء يفلت منك!", "كفو يا وحش! 🦁 هكذا يكون الأبطال!"
+        ];
+        const wrongMessages = [
+            "لا تستسلم! المحاولة التالية لك! 💪", "ركز أكثر يا وحش! 🦁 قفازات كيبر ون ستساعدك.",
+            "هفوة بسيطة، البطل لا يسقط! 👊", "التركيز هو مفتاح النجاح، هيا مجددًا! 🧠", "استمر في المحاولة، الطريق للقمة يبدأ بخطوة. 🚀"
+        ];
+
+        const app = {
+            state: {
+                currentPage: 'menu',
+                gameInProgress: false,
+                currentUser: { name: null, phone: null },
+                gameToStart: null,
+                activeTimers: [],
+            },
+
+            init() {
+                document.getElementById('user-info-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleUserInfoSubmit();
+                });
+                document.getElementById('leaderboard-game-select').addEventListener('change', (e) => {
+                    this.renderLeaderboard(e.target.value);
+                });
+                this.game1.init(); this.game2.init(); this.game3.init(); this.game4.init(); this.game5.init();
+            },
+            
+            clearTimers() {
+                this.state.activeTimers.forEach(timer => clearInterval(timer));
+                this.state.activeTimers = [];
+            },
+
+            quitGame() {
+                this.clearTimers();
+                this.state.gameInProgress = false;
+                this.showPage('menu');
+            },
+
+            showPage(pageId) {
+                this.clearTimers();
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(`page-${pageId}`).classList.add('active');
+                this.state.currentPage = pageId;
+            },
+
+            prepareGame(gameId) {
+                if (gameId === 'game5') {
+                    this.showPage('game5-setup');
+                } else {
+                    this.state.gameToStart = gameId;
+                    this.showPage('user-info');
+                }
+            },
+
+            handleUserInfoSubmit() {
+                const name = document.getElementById('playerName').value;
+                const phone = document.getElementById('playerPhone').value;
+                if (name && phone) {
+                    this.state.currentUser = { name, phone };
+                    this[this.state.gameToStart].start();
+                }
+            },
+            
+            showFeedbackMessage(message, isSuccess) {
+                const container = document.getElementById('feedback-container');
+                const p = document.createElement('p');
+                p.textContent = message;
+                p.className = `feedback-message p-3 rounded-lg shadow-lg text-lg font-bold ${isSuccess ? 'bg-green-500' : 'bg-red-500'}`;
+                container.innerHTML = '';
+                container.appendChild(p);
+            },
+            
+            getRandomMessage(isSuccess) {
+                const messages = isSuccess ? correctMessages : wrongMessages;
+                return messages[Math.floor(Math.random() * messages.length)];
+            },
+
+            async sendSingleScoreToFirebase(scoreData) {
+                if (!db) {
+                    console.error("Realtime Database is not initialized.");
+                    throw new Error("Realtime Database not initialized");
+                }
+                const scoresRef = ref(db, 'scores');
+                const newScoreRef = push(scoresRef);
+                await set(newScoreRef, scoreData);
+            },
+            
+            showEndGameSummary(summaryData) {
+                this.clearTimers();
+                document.getElementById('end-game-results').textContent = summaryData.message;
+                this.showPage('end-game-summary');
+                
+                const sendBtn = document.getElementById('send-results-btn');
+                const statusMsg = document.getElementById('send-status-msg');
+                statusMsg.textContent = '';
+                sendBtn.disabled = false;
+                sendBtn.style.opacity = '1';
+
+                const newSendBtn = sendBtn.cloneNode(true);
+                sendBtn.parentNode.replaceChild(newSendBtn, sendBtn);
+
+                newSendBtn.addEventListener('click', async () => {
+                    newSendBtn.disabled = true;
+                    newSendBtn.style.opacity = '0.5';
+                    statusMsg.textContent = 'جاري الإرسال...';
+                    statusMsg.className = 'h-6 mb-4 text-yellow-400';
+
+                    try {
+                        const promises = summaryData.scores.map(scoreInfo => {
+                             const data = {
+                                game: summaryData.gameId,
+                                score: scoreInfo.score,
+                                name: scoreInfo.name,
+                                phone: scoreInfo.phone || 'N/A',
+                                scoreType: scoreInfo.scoreType || 'points',
+                                timestamp: new Date().toISOString()
+                            };
+                            return this.sendSingleScoreToFirebase(data);
+                        });
+                        await Promise.all(promises);
+                        statusMsg.textContent = 'تم الإرسال بنجاح!';
+                        statusMsg.className = 'h-6 mb-4 text-green-500';
+                    } catch (error) {
+                        console.error("Error sending results: ", error);
+                        statusMsg.textContent = 'فشل الإرسال. حاول مرة أخرى.';
+                        statusMsg.className = 'h-6 mb-4 text-red-500';
+                        newSendBtn.disabled = false;
+                         newSendBtn.style.opacity = '1';
+                    }
+                });
+            },
+
+            showLeaderboard() {
+                 this.showPage('leaderboard');
+                 this.renderLeaderboard(document.getElementById('leaderboard-game-select').value);
+            },
+
+            async renderLeaderboard(gameId) {
+                if(!db) {
+                     document.getElementById('leaderboard-table-body').innerHTML = `<tr><td colspan="3" class="p-4">لوحة الصدارة غير متاحة حاليًا.</td></tr>`;
+                     return;
+                }
+                const tableBody = document.getElementById('leaderboard-table-body');
+                tableBody.innerHTML = `<tr><td colspan="3" class="p-4">جاري التحميل...</td></tr>`;
+                
+                try {
+                    const scoresRef = ref(db, 'scores');
+                    const snapshot = await get(scoresRef);
+                    let scores = [];
+                    if (snapshot.exists()) {
+                         snapshot.forEach(childSnapshot => {
+                            const scoreData = childSnapshot.val();
+                            if (scoreData.game === gameId) {
+                                scores.push(scoreData);
+                            }
+                        });
+                    }
+
+                    if (scores.length === 0) {
+                        tableBody.innerHTML = `<tr><td colspan="3" class="p-4">لا توجد نتائج مسجلة لهذه اللعبة بعد.</td></tr>`;
+                        return;
+                    }
+
+                    const sortOrder = gameId === 'game1' ? 'asc' : 'desc';
+                    if (sortOrder === 'asc') {
+                        scores.sort((a, b) => a.score - b.score);
+                    } else {
+                        scores.sort((a, b) => b.score - a.score);
+                    }
+
+                    const topScores = scores.slice(0, 20);
+                    
+                    tableBody.innerHTML = topScores.map((entry, index) => {
+                        const rankIcons = ['🥇', '🥈', '🥉'];
+                        const rankDisplay = index < 3 ? `${rankIcons[index]} ${index + 1}` : index + 1;
+                        return `
+                            <tr class="border-t border-gray-700 hover:bg-gray-700">
+                                <td class="p-3">${rankDisplay}</td>
+                                <td class="p-3">${entry.name}</td>
+                                <td class="p-3 font-bold text-yellow-400">${entry.score.toFixed(gameId === 'game1' ? 3 : 0)} ${gameId === 'game1' ? 'ثانية' : 'نقطة'}</td>
+                            </tr>
+                        `
+                    }).join('');
+
+                } catch (error) {
+                    console.error("Error fetching leaderboard: ", error);
+                     tableBody.innerHTML = `<tr><td colspan="3" class="p-4">حدث خطأ أثناء تحميل البيانات.</td></tr>`;
+                }
+            },
+
+            game1: {
+                round: 0, totalTime: 0, startTime: 0, timeoutId: null,
+                colors: ['red', 'blue', 'green', 'yellow'], currentColor: null,
+                roundResults: [],
+
+                init() {
+                    document.querySelectorAll('#game1-buttons button').forEach(button => {
+                        button.addEventListener('click', (e) => this.check(e.target.dataset.color));
+                    });
+                },
+
+                start() {
+                    app.showPage('game1');
+                    this.round = 0; this.totalTime = 0; this.roundResults = [];
+                    document.getElementById('game1-results-container').innerHTML = '';
+                    this.nextRound();
+                },
+                
+                nextRound() {
+                    if (this.round >= 5) { this.endGame(); return; }
+                    this.round++;
+                    document.getElementById('game1-round').textContent = `الجولة: ${this.round} / 5`;
+                    const display = document.getElementById('game1-display');
+                    display.style.backgroundColor = '#374151';
+                    document.getElementById('game1-feedback').textContent = 'استعد...';
+                    
+                    this.timeoutId = setTimeout(() => {
+                        this.currentColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+                        display.style.backgroundColor = this.currentColor;
+                        document.getElementById('game1-feedback').textContent = '';
+                        this.startTime = performance.now();
+                    }, Math.random() * 2000 + 1000);
+                    app.state.activeTimers.push(this.timeoutId);
+                },
+
+                showPopFeedback(text, isSuccess) {
+                    const container = document.getElementById('game1-pop-feedback-container');
+                    const p = document.createElement('p');
+                    p.textContent = text;
+                    p.className = `pop-feedback ${isSuccess ? 'text-green-400' : 'text-red-400'}`;
+                    container.appendChild(p);
+                    setTimeout(() => p.remove(), 1500);
+                },
+
+                renderResultsTable() {
+                    const container = document.getElementById('game1-results-container');
+                    let tableHTML = `<table class="w-full text-center bg-gray-800 rounded-lg mt-4"><thead><tr>
+                        <th class="p-2">الجولة</th><th class="p-2">النتيجة</th><th class="p-2">الزمن</th>
+                        </tr></thead><tbody>`;
+                    tableHTML += this.roundResults.map(r => `
+                        <tr class="border-t border-gray-700">
+                            <td class="p-2">${r.round}</td>
+                            <td class="p-2 ${r.correct ? 'text-green-500' : 'text-red-500'}">${r.correct ? '✅' : '❌'}</td>
+                            <td class="p-2">${r.time.toFixed(3)} ث</td>
+                        </tr>`).join('');
+                    tableHTML += `</tbody></table>`;
+                    container.innerHTML = tableHTML;
+                },
+
+                check(clickedColor) {
+                    if (!this.startTime) return;
+                    clearTimeout(this.timeoutId);
+                    const reactionTime = (performance.now() - this.startTime) / 1000;
+                    const isCorrect = clickedColor === this.currentColor;
+                    
+                    if (isCorrect) {
+                        this.totalTime += reactionTime;
+                        app.showFeedbackMessage(app.getRandomMessage(true), true);
+                        this.showPopFeedback(`${reactionTime.toFixed(3)}s`, true);
+                    } else {
+                        this.totalTime += 2; // Penalty
+                        app.showFeedbackMessage(app.getRandomMessage(false), false);
+                        this.showPopFeedback('خطأ!', false);
+                    }
+
+                    this.roundResults.push({ round: this.round, correct: isCorrect, time: reactionTime });
+                    this.renderResultsTable();
+
+                    this.startTime = 0;
+                    setTimeout(() => this.nextRound(), 500);
+                },
+                
+                endGame() {
+                    const averageTime = this.totalTime / 5;
+                    const summaryData = {
+                        gameId: 'game1',
+                        scores: [{
+                            name: app.state.currentUser.name, phone: app.state.currentUser.phone,
+                            score: averageTime, scoreType: 'time'
+                        }],
+                        message: `نتيجتك النهائية:\nمتوسط سرعة ردة فعلك هو ${averageTime.toFixed(3)} ثانية.`
+                    };
+                    app.showEndGameSummary(summaryData);
+                }
+            },
+            
+            game2: {
+                score: 0, isBiggerChallenge: true, timerId: null, timeLeft: 30,
+
+                init() {
+                    document.getElementById('game2-shape1').addEventListener('click', () => this.check(1));
+                    document.getElementById('game2-shape2').addEventListener('click', () => this.check(2));
+                },
+
+                start() {
+                    app.showPage('game2');
+                    this.score = 0;
+                    this.timeLeft = 30;
+                    document.getElementById('game2-score').textContent = `النقاط: 0`;
+                    document.getElementById('game2-timer').textContent = `00:${this.timeLeft}`;
+                    this.nextRound();
+
+                    this.timerId = setInterval(() => this.updateTimer(), 1000);
+                    app.state.activeTimers.push(this.timerId);
+                },
+
+                updateTimer() {
+                    this.timeLeft--;
+                    const seconds = String(this.timeLeft % 60).padStart(2, '0');
+                    document.getElementById('game2-timer').textContent = `00:${seconds}`;
+                    if (this.timeLeft <= 0) {
+                        this.endGame();
+                    }
+                },
+
+                nextRound() {
+                    this.isBiggerChallenge = Math.random() > 0.5;
+                    document.getElementById('game2-instruction').textContent = this.isBiggerChallenge ? 'اختر الأكبر' : 'اختر الأصغر';
+                    
+                    const shape1 = document.getElementById('game2-shape1');
+                    const shape2 = document.getElementById('game2-shape2');
+                    let size1 = Math.floor(Math.random() * 100) + 50;
+                    let size2 = Math.floor(Math.random() * 100) + 50;
+                    while (Math.abs(size1 - size2) < 20) { size2 = Math.floor(Math.random() * 100) + 50; }
+                    
+                    const colors = ['#ef4444', '#3b82f6', '#22c55e', '#eab308', '#8b5cf6'];
+                    shape1.style.cssText = `width:${size1}px; height:${size1}px; background-color:${colors[Math.floor(Math.random() * colors.length)]};`;
+                    shape1.dataset.size = size1;
+                    shape2.style.cssText = `width:${size2}px; height:${size2}px; background-color:${colors[Math.floor(Math.random() * colors.length)]};`;
+                    shape2.dataset.size = size2;
+
+                    app.state.gameInProgress = true;
+                },
+
+                check(shapeNumber) {
+                    if (!app.state.gameInProgress) return;
+                    const size1 = parseInt(document.getElementById('game2-shape1').dataset.size);
+                    const size2 = parseInt(document.getElementById('game2-shape2').dataset.size);
+                    const isShape1Bigger = size1 > size2;
+                    const correct = (this.isBiggerChallenge && ((shapeNumber === 1 && isShape1Bigger) || (shapeNumber === 2 && !isShape1Bigger))) ||
+                                  (!this.isBiggerChallenge && ((shapeNumber === 1 && !isShape1Bigger) || (shapeNumber === 2 && isShape1Bigger)));
+
+                    const feedbackEl = document.getElementById('game2-feedback');
+                    if (correct) {
+                        this.score += 10;
+                        feedbackEl.textContent = app.getRandomMessage(true);
+                        feedbackEl.className = 'text-2xl font-bold h-10 mt-4 text-green-500';
+                    } else {
+                         this.score = Math.max(0, this.score - 5);
+                         feedbackEl.textContent = app.getRandomMessage(false);
+                         feedbackEl.className = 'text-2xl font-bold h-10 mt-4 text-red-500';
+                    }
+                    document.getElementById('game2-score').textContent = `النقاط: ${this.score}`;
+                    setTimeout(() => feedbackEl.textContent = '', 1500);
+                    this.nextRound();
+                },
+
+                endGame() {
+                    app.state.gameInProgress = false;
+                    const summaryData = {
+                        gameId: 'game2',
+                        scores: [{ name: app.state.currentUser.name, phone: app.state.currentUser.phone, score: this.score }],
+                        message: `انتهى الوقت!\nنتيجتك النهائية: ${this.score} نقطة.`
+                    };
+                    app.showEndGameSummary(summaryData);
+                }
+            },
+
+            game3: {
+                targetTime: 0, startTime: 0, intervalId: null, score: 0, rounds: 0, roundResults: [],
+
+                init() {
+                    document.getElementById('game3-button').addEventListener('click', () => this.check());
+                },
+                
+                start() {
+                    app.showPage('game3');
+                    this.score = 0; this.rounds = 0; this.roundResults = [];
+                    document.getElementById('game3-score').textContent = `النقاط: ${this.score}`;
+                    document.getElementById('game3-results-container').innerHTML = '';
+                    this.nextRound();
+                },
+
+                nextRound() {
+                    if (this.rounds >= 5) { this.endGame(); return; }
+                    this.rounds++;
+                    document.getElementById('game3-round').textContent = `الجولة: ${this.rounds} / 5`;
+                    app.state.gameInProgress = false;
+                    const btn = document.getElementById('game3-button');
+                    btn.disabled = false; btn.textContent = 'إضغط!';
+
+                    this.targetTime = (Math.random() * 7 + 3);
+                    document.getElementById('game3-target-time').textContent = `${this.targetTime.toFixed(2)} ثانية`;
+                    document.getElementById('game3-current-time').textContent = '0.00';
+                    document.getElementById('game3-timing-bar').style.width = '0%';
+
+                    const startTimeout = setTimeout(() => {
+                        this.startTime = performance.now();
+                        app.state.gameInProgress = true;
+                        this.intervalId = setInterval(() => this.updateTimer(), 10);
+                        app.state.activeTimers.push(this.intervalId);
+                    }, 1000);
+                    app.state.activeTimers.push(startTimeout);
+                },
+
+                updateTimer() {
+                    if (!this.startTime) return;
+                    const elapsedTime = (performance.now() - this.startTime) / 1000;
+                    document.getElementById('game3-current-time').textContent = elapsedTime.toFixed(2);
+                    document.getElementById('game3-timing-bar').style.width = `${Math.min(100, (elapsedTime / 15) * 100)}%`;
+                    if (elapsedTime >= 15) { this.check(true); }
+                },
+                
+                renderResultsTable() {
+                    const container = document.getElementById('game3-results-container');
+                    let tableHTML = `<table class="w-full text-center bg-gray-800 rounded-lg mt-4 text-sm"><thead><tr>
+                        <th class="p-2">الجولة</th><th class="p-2">الهدف</th><th class="p-2">توقيتك</th><th class="p-2">الفرق</th><th class="p-2">النقاط</th>
+                        </tr></thead><tbody>`;
+                    tableHTML += this.roundResults.map(r => `
+                        <tr class="border-t border-gray-700">
+                            <td class="p-1">${r.round}</td>
+                            <td class="p-1">${r.target.toFixed(2)}</td>
+                            <td class="p-1">${r.time.toFixed(2)}</td>
+                            <td class="p-1 ${r.points > 0 ? 'text-green-400' : 'text-red-400'}">${r.diff.toFixed(3)}</td>
+                            <td class="p-1 font-bold ${r.points > 0 ? 'text-yellow-400' : ''}">${r.points}</td>
+                        </tr>`).join('');
+                    tableHTML += `</tbody></table>`;
+                    container.innerHTML = tableHTML;
+                },
+
+                check(isTimeout = false) {
+                    if (!app.state.gameInProgress) return;
+                    app.clearTimers();
+                    app.state.gameInProgress = false;
+                    document.getElementById('game3-button').disabled = true;
+
+                    const endTime = (performance.now() - this.startTime) / 1000;
+                    const difference = Math.abs(endTime - this.targetTime);
+                    const feedbackEl = document.getElementById('game3-feedback');
+                    let points = 0;
+                    let feedbackText = '';
+
+                    if (isTimeout) {
+                        feedbackText = 'توقيت سيء! ❌ الوقت انتهى!';
+                    } else if (difference <= 0.075) {
+                        points = 200;
+                        feedbackText = `ممتاز! 🎯 (+${points} نقطة)`;
+                    } else if (difference <= 0.15) {
+                        points = 100;
+                        feedbackText = `قريب جداً! 👍 (+${points} نقطة)`;
+                    } else if (difference <= 0.4) {
+                        points = 50;
+                        feedbackText = `ردة فعل عادية 👌 (+${points} نقطة)`;
+                    } else {
+                        feedbackText = `توقيت سيء! 😞`;
+                    }
+                    
+                    this.score += points;
+                    feedbackEl.textContent = feedbackText;
+                    this.roundResults.push({ round: this.rounds, target: this.targetTime, time: endTime, diff: difference, points: points });
+                    this.renderResultsTable();
+                    document.getElementById('game3-score').textContent = `النقاط: ${this.score}`;
+                    
+                    const nextRoundTimeout = setTimeout(() => { feedbackEl.textContent = ''; this.nextRound(); }, 2500);
+                    app.state.activeTimers.push(nextRoundTimeout);
+                },
+
+                endGame() {
+                    const summaryData = {
+                        gameId: 'game3',
+                        scores: [{ name: app.state.currentUser.name, phone: app.state.currentUser.phone, score: this.score }],
+                        message: `انتهى التحدي!\nنتيجتك النهائية: ${this.score} نقطة.`
+                    };
+                    app.showEndGameSummary(summaryData);
+                }
+            },
+            
+            game4: {
+                score: 0, timerId: null, timeLeft: 30, correctWord: null, recentAnswers: [],
+                colors: { 'أحمر': '#ef4444', 'أزرق': '#3b82f6', 'أخضر': '#22c55e', 'أصفر': '#eab308', 'بنفسجي': '#8b5cf6', 'برتقالي': '#f97316' },
+                init() {},
+
+                start() {
+                    app.showPage('game4');
+                    this.score = 0;
+                    this.timeLeft = 30;
+                    this.recentAnswers = [];
+                    document.getElementById('game4-score').textContent = `النقاط: 0`;
+                    document.getElementById('game4-timer').textContent = `00:${this.timeLeft}`;
+                    document.getElementById('game4-results-container').innerHTML = '';
+
+                    this.nextRound();
+                    this.timerId = setInterval(() => this.updateTimer(), 1000);
+                    app.state.activeTimers.push(this.timerId);
+                },
+                
+                updateTimer() {
+                    this.timeLeft--;
+                    const seconds = String(this.timeLeft % 60).padStart(2, '0');
+                    document.getElementById('game4-timer').textContent = `00:${seconds}`;
+                    if (this.timeLeft <= 0) {
+                        this.endGame();
+                    }
+                },
+                
+                renderResults() {
+                    const container = document.getElementById('game4-results-container');
+                    const resultsHTML = this.recentAnswers.map(res => 
+                        `<span class="mx-1 p-1 rounded ${res ? 'bg-green-600' : 'bg-red-600'}">${res ? '✅' : '❌'}</span>`
+                    ).join('');
+                    container.innerHTML = `آخر الإجابات: ${resultsHTML}`;
+                },
+
+                nextRound() {
+                    const colorNames = Object.keys(this.colors);
+                    this.correctWord = colorNames[Math.floor(Math.random() * colorNames.length)];
+                    let displayColorName = this.correctWord;
+                    while(displayColorName === this.correctWord) {
+                        displayColorName = colorNames[Math.floor(Math.random() * colorNames.length)];
+                    }
+                    
+                    document.getElementById('game4-word').textContent = this.correctWord;
+                    document.getElementById('game4-shape').style.backgroundColor = this.colors[displayColorName];
+                    
+                    const buttonsContainer = document.getElementById('game4-buttons');
+                    buttonsContainer.innerHTML = '';
+                    colorNames.sort(() => Math.random() - 0.5).forEach(name => {
+                        const button = document.createElement('button');
+                        button.textContent = name;
+                        button.className = 'h-20 rounded-lg text-xl font-bold';
+                        button.style.backgroundColor = this.colors[name];
+                        button.addEventListener('click', () => this.check(name));
+                        buttonsContainer.appendChild(button);
+                    });
+                     app.state.gameInProgress = true;
+                },
+
+                check(clickedWord) {
+                    if (!app.state.gameInProgress) return;
+                    const feedbackEl = document.getElementById('game4-feedback');
+                    const isCorrect = clickedWord === this.correctWord;
+                    
+                    if (isCorrect) {
+                        this.score += 10;
+                        feedbackEl.textContent = app.getRandomMessage(true);
+                        feedbackEl.className = 'text-2xl font-bold h-10 mt-4 text-green-500';
+                    } else {
+                        this.score = Math.max(0, this.score - 5);
+                        feedbackEl.textContent = app.getRandomMessage(false);
+                        feedbackEl.className = 'text-2xl font-bold h-10 mt-4 text-red-500';
+                    }
+                    
+                    this.recentAnswers.push(isCorrect);
+                    if (this.recentAnswers.length > 10) this.recentAnswers.shift();
+                    this.renderResults();
+                    
+                    setTimeout(() => feedbackEl.textContent = '', 1500);
+                    document.getElementById('game4-score').textContent = `النقاط: ${this.score}`;
+                    this.nextRound();
+                },
+
+                endGame() {
+                    app.state.gameInProgress = false;
+                    const summaryData = {
+                        gameId: 'game4',
+                        scores: [{ name: app.state.currentUser.name, phone: app.state.currentUser.phone, score: this.score }],
+                        message: `انتهى الوقت!\nنتيجتك النهائية: ${this.score} نقطة.`
+                    };
+                    app.showEndGameSummary(summaryData);
+                }
+            },
+            
+            game5: {
+                player1: { name: '', score: 0 }, player2: { name: '', score: 0 }, round: 0,
+                opposites: { 'white': 'black', 'black': 'white', 'red': 'blue', 'blue': 'red', 'yellow': 'green', 'green': 'yellow' },
+                currentColor: null, correctOpposite: null, clickedColor: null,
+
+                init() {
+                    document.getElementById('game5-setup-form').addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const p1Name = document.getElementById('player1Name').value;
+                        const p2Name = document.getElementById('player2Name').value;
+                        if(p1Name && p2Name) { this.start(p1Name, p2Name); }
+                    });
+                    document.querySelectorAll('#game5-buttons-container button').forEach(btn => {
+                        btn.addEventListener('click', (e) => this.check(e.target.dataset.color));
+                    });
+                    document.getElementById('game5-select-p1').addEventListener('click', () => this.assignScore(1));
+                    document.getElementById('game5-select-p2').addEventListener('click', () => this.assignScore(2));
+                },
+
+                start(p1Name, p2Name) {
+                    this.player1 = { name: p1Name, score: 0 };
+                    this.player2 = { name: p2Name, score: 0 };
+                    document.getElementById('game5-select-p1').textContent = p1Name;
+                    document.getElementById('game5-select-p2').textContent = p2Name;
+                    this.round = 0;
+                    app.showPage('game5-play');
+                    this.nextRound();
+                },
+                
+                updateScores() {
+                     document.getElementById('game5-player1-score').textContent = `${this.player1.name}: ${this.player1.score}`;
+                     document.getElementById('game5-player2-score').textContent = `${this.player2.name}: ${this.player2.score}`;
+                },
+
+                nextRound() {
+                     if (this.round >= 10) { this.endGame(); return; }
+                    this.round++;
+                    this.updateScores();
+                    app.state.gameInProgress = false;
+                    document.getElementById('game5-feedback').textContent = 'استعدوا...';
+                    document.getElementById('game5-player-selector').style.display = 'none';
+                    document.getElementById('game5-buttons-container').classList.remove('hidden');
+
+                    const startTimeout = setTimeout(() => {
+                        const colors = Object.keys(this.opposites);
+                        this.currentColor = colors[Math.floor(Math.random() * colors.length)];
+                        this.correctOpposite = this.opposites[this.currentColor];
+
+                        const colorMap = {'white':'#FFFFFF', 'black':'#000000', 'red':'#ef4444', 'blue':'#3b82f6', 'yellow':'#eab308', 'green':'#22c55e'};
+                        document.getElementById('game5-target-color').style.backgroundColor = colorMap[this.currentColor];
+                        document.getElementById('game5-feedback').textContent = '';
+                        app.state.gameInProgress = true;
+                    }, 2000);
+                    app.state.activeTimers.push(startTimeout);
+                },
+
+                check(clickedColor) {
+                    if (!app.state.gameInProgress) return;
+                    app.state.gameInProgress = false;
+                    this.clickedColor = clickedColor;
+                    document.getElementById('game5-buttons-container').classList.add('hidden');
+                    document.getElementById('game5-player-selector').style.display = 'flex';
+                },
+                
+                assignScore(playerNumber) {
+                    document.getElementById('game5-player-selector').style.display = 'none';
+                    const feedbackEl = document.getElementById('game5-feedback');
+                    const isCorrect = this.clickedColor === this.correctOpposite;
+
+                    if(isCorrect) {
+                        feedbackEl.textContent = `نقطة لـ ${playerNumber === 1 ? this.player1.name : this.player2.name}! ✅`;
+                        feedbackEl.className = 'text-2xl font-bold h-10 mb-6 text-green-500';
+                        if (playerNumber === 1) { this.player1.score++; } else { this.player2.score++; }
+                    } else {
+                        feedbackEl.textContent = `إجابة خاطئة! ❌ نقطة للخصم.`;
+                        feedbackEl.className = 'text-2xl font-bold h-10 mb-6 text-red-500';
+                        if (playerNumber === 1) { this.player2.score++; } else { this.player1.score++; }
+                    }
+                    const nextRoundTimeout = setTimeout(() => this.nextRound(), 2000);
+                    app.state.activeTimers.push(nextRoundTimeout);
+                },
+
+                endGame() {
+                    let winnerMessage;
+                    if (this.player1.score > this.player2.score) {
+                        winnerMessage = `الفائز هو ${this.player1.name}! 🏆`;
+                    } else if (this.player2.score > this.player1.score) {
+                        winnerMessage = `الفائز هو ${this.player2.name}! 🏆`;
+                    } else {
+                        winnerMessage = `انتهى التحدي بالتعادل! 🤝`;
+                    }
+
+                     const summaryData = {
+                        gameId: 'game5',
+                        scores: [
+                            { name: this.player1.name, score: this.player1.score },
+                            { name: this.player2.name, score: this.player2.score }
+                        ],
+                        message: `النتيجة النهائية:\n${this.player1.name}: ${this.player1.score}\n${this.player2.name}: ${this.player2.score}\n\n${winnerMessage}`
+                    };
+                    app.showEndGameSummary(summaryData);
+                }
+            }
+        };
+        window.addEventListener('DOMContentLoaded', () => app.init());
+        window.app = app;
+    </script>
+</body>
+</html>
+
+
