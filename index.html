@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K1 - لوحة تحكم الألعاب</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem;
+            padding: 2.5rem;
+            background-color: #1e1e1e;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 2px solid #2a2a2a;
+        }
+        .logo-text {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #fcd34d, #f9a826);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 8px rgba(252, 211, 77, 0.4);
+        }
+        .header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fcd34d;
+            margin-bottom: 0.5rem;
+        }
+        .sub-header {
+            font-size: 1.25rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background-color: #2c2c2c;
+            border: 2px solid #3b82f6;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+            background-color: #383838;
+        }
+        .card-icon {
+            font-size: 3.5rem;
+            color: #fcd34d;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .social-media {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+        .social-media-link {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .social-media-link:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo-text">K1</h1>
+        <h2 class="header">مرحباً بك في تحدي الأساطير!</h2>
+        <p class="sub-header">استعرض مهاراتك كحارس مرمى وتنافس مع أفضل الحراس.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="k1_games.html#reaction-challenge" class="card block">
+                <div class="card-icon">⚡️</div>
+                <h2 class="card-title">تحدي ردة الفعل</h2>
+            </a>
+            <a href="k1_games.html#guess-challenge" class="card block">
+                <div class="card-icon">🧠</div>
+                <h2 class="card-title">اختر الأصغر/الأكبر</h2>
+            </a>
+            <a href="k1_games.html#timing-challenge" class="card block">
+                <div class="card-icon">⏱️</div>
+                <h2 class="card-title">التوقيت المثالي</h2>
+            </a>
+            <a href="k1_games.html#direction-challenge" class="card block">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">تحديد الاتجاه</h2>
+            </a>
+            <a href="k1_games.html#ball-throw-challenge" class="card block">
+                <div class="card-icon">⚽️</div>
+                <h2 class="card-title">رمي الكرة</h2>
+            </a>
+            <a href="k1_leaderboard.html" class="card block bg-blue-600 hover:bg-blue-700 transition-colors">
+                <div class="card-icon">🏆</div>
+                <h2 class="card-title">لوحة الصدارة</h2>
+            </a>
+        </div>
+        
+        <div class="social-media">
+            <h3 class="text-xl font-bold mb-4">انضم إلى مجتمع حراس المرمى الأساطير!</h3>
+            <div class="flex justify-center items-center space-x-6">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/keeper1gk" target="_blank" class="social-media-link">
+                    <svg class="h-10 w-10 text-gray-400 hover:text-pink-500 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.72.01 3.68.053 2.19.096 3.12 1.026 3.21 3.21.043.96.053 1.25.053 3.68v2.66c0 .96-.01 1.25-.053 3.68-.096 2.19-1.026 3.12-3.21 3.21-.96.043-1.25.053-3.68.053s-2.72-.01-3.68-.053c-2.19-.096-3.12-1.026-3.21-3.21-.043-.96-.053-1.25-.053-3.68V9.34c0-.96.01-1.25.053-3.68.096-2.19 1.026-3.12 3.21-3.21.96-.043 1.25-.053 3.68-.053zM12 9.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zM12 14.11c-.9 0-1.61-.71-1.61-1.61s.71-1.61 1.61-1.61 1.61.71 1.61 1.61-.71 1.61-1.61 1.61zm3.76-4.52c-.3-.3-.7-.48-1.14-.48s-.84.18-1.14.48c-.3.3-.48.7-.48 1.14s.18.84.48 1.14c.3.3.7.48 1.14.48s.84-.18 1.14-.48c.3-.3.48-.7.48-1.14s-.18-.84-.48-1.14z"/>
+                    </svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@keeper1gk" target="_blank" class="social-media-link">
+                    <svg class="h-10 w-10 text-gray-400 hover:text-black transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12.525 2.001a11.964 11.964 0 00-6.702 2.056c-.524.32-.882.91-.882 1.554v4.54a1.867 1.867 0 01-1.996.161c-.482-.24-.972-.455-1.465-.632l-.082-.03c-.27-.099-.54-.16-.81-.18l-.16-.02c-.37-.03-.74-.01-.99-.17-.18-.1-.31-.22-.39-.37-.15-.28-.19-.62-.12-1.11.07-.48.24-.9.49-1.34.25-.43.56-.8.95-1.13.39-.33.82-.57 1.28-.73l.23-.07c.45-.16.91-.25 1.36-.25h.3c.52 0 .96-.4.96-.92v-1.74c0-.52-.4-.96-.96-.96-.52 0-.96.4-.96.92v1.74c0 .52-.4.96-.92.96-.52 0-.96-.4-.96-.92V4.99c0-.43-.19-.79-.53-1.05-.34-.26-.74-.38-1.17-.38-.4 0-.74.12-1.05.34-.3.23-.5.53-.59.87-.09.34-.1.69-.03 1.04.07.35.25.66.49.9.24.23.5.42.79.57.29.15.6.26.93.31.33.05.65.05.97 0 .32-.05.62-.16.9-.31.29-.15.54-.34.76-.57.22-.24.39-.55.49-.9.1-.35.12-.7-.03-1.04-.15-.35-.41-.66-.75-.9-.34-.23-.7-.42-1.11-.57-.4-.15-.8-.25-1.22-.29l-.27-.04c-.38-.06-.76-.04-1.13-.04-.49 0-.9-.05-1.23-.15-.33-.09-.59-.22-.79-.38-.2-.16-.31-.35-.35-.55-.04-.2-.02-.4-.01-.6-.01-.2-.04-.4-.08-.59-.04-.2-.1-.38-.18-.54-.08-.16-.17-.3-.29-.44-.12-.13-.27-.24-.43-.32-.16-.08-.34-.13-.53-.15-.2-.02-.4-.02-.6-.02-.49 0-.9.05-1.23.15-.33.09-.59.22-.79.38-.2.16-.31.35-.35.55-.04.2-.02.4-.01.6-.01.2-.04.4-.08.59-.04.2-.1.38-.18.54-.08.16-.17.3-.29.44-.12.13-.27.24-.43.32-.16.08-.34.13-.53.15-.2.02-.4.02-.6.02-.49 0-.9.05-1.23.15-.33.09-.59.22-.79.38-.2.16-.31.35-.35.55-.04.2-.02.4-.01.6-.01.2-.04.4-.08.59-.04-.2-.1-.38-.18-.54-.08-.16-.17-.3-.29-.44-.12-.13-.27-.24-.43-.32-.16-.08-.34-.13-.53-.15-.2.02-.4.02-.6.02-.49 0-.9.05-1.23.15-.33.09-.59.22-.79.38-.2.16-.31.35-.35.55-.04.2-.02.4-.01.6-.01.2-.04.4-.08.59-.04-.2-.1-.38-.18-.54-.08-.16-.17-.3-.29.44-.12-.13-.27-.24-.43-.32-.16-.08-.34-.13-.53-.15-.2.02-.4.02-.6.02-.49 0-.9.05-1.23.15-.33.09-.59.22-.79.38-.2.16-.31.35-.35.55-.04.2-.02.4-.01.6-.01.2-.04.4-.08.59-.04-.2-.1-.38-.18-.54-.08-.16-.17-.3-.29.44-.12.13-.27-.24-.43-.32-.16-.08-.34-.13-.53-.15-.2.02-.4.02-.6.02z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <!-- Snapchat -->
+                <a href="https://www.snapchat.com/add/keeper1gk" target="_blank" class="social-media-link">
+                    <svg class="h-10 w-10 text-gray-400 hover:text-yellow-500 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 0c-4.418 0-8 3.582-8 8v8c0 4.418 3.582 8 8 8s8-3.582 8-8v-8c0-4.418-3.582-8-8-8zm0 15c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">تابعنا على <span class="font-bold">@keeper1gk</span></p>
+        </div>
+    </div>
+</body>
+</html>
