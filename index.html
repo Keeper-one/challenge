@@ -27,8 +27,8 @@
         }
         .color-btn-game1 {
             transition: transform 0.1s ease;
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border: 4px solid white;
         }
         .color-btn-game1:active {
@@ -46,11 +46,11 @@
             perspective: 1000px;
         }
         .shape {
-            transition: all 0.3s ease;
+            transition: all 0.15s ease;
             cursor: pointer;
         }
         .shape:hover {
-            transform: translateZ(20px);
+            transform: scale(1.1) rotate(5deg);
         }
         #game3-timer-bar-inner {
             transition: width 0.1s linear;
@@ -59,37 +59,28 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
         #leaderboard-filters .filter-btn {
-            background-color: #4a5568;
-            color: #e2e8f0;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            background-color: #4a5568; color: #e2e8f0; padding: 8px 16px; border-radius: 8px; transition: all 0.2s ease;
         }
-        #leaderboard-filters .filter-btn:hover {
-            background-color: #718096;
-        }
-        #leaderboard-filters .filter-btn.active {
-            background-color: #f6e05e; /* yellow-400 */
-            color: #1a202c;
-            font-weight: bold;
-        }
+        #leaderboard-filters .filter-btn:hover { background-color: #718096; }
+        #leaderboard-filters .filter-btn.active { background-color: #f6e05e; color: #1a202c; font-weight: bold; }
+        .bg-whatsapp-green { background-color: #25D366; }
+        .bg-whatsapp-green:hover { background-color: #128C7E; }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="app-container" class="min-h-screen flex flex-col items-center justify-center p-4">
 
-        <!-- ===== صفحة القائمة الرئيسية ===== -->
         <div id="page-menu" class="page active flex-col items-center justify-center w-full max-w-2xl text-center">
             <h1 class="text-6xl font-black text-white mb-2">K1</h1>
             <h2 class="text-2xl font-bold text-yellow-400 mb-1 tracking-widest">keeper one Challenge</h2>
             <p class="text-xl text-gray-300 mb-8">تحدي الحراس من كيبر ون</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                <button onclick="app.prepareGame('game1')" class="btn-game bg-blue-600 p-4 rounded-lg text-xl font-bold">1. تحدي ردة الفعل ⚡</button>
-                <button onclick="app.prepareGame('game2')" class="btn-game bg-green-600 p-4 rounded-lg text-xl font-bold">2. اختر الأصغر / الأكبر ⚖️</button>
-                <button onclick="app.prepareGame('game3')" class="btn-game bg-purple-600 p-4 rounded-lg text-xl font-bold">3. التوقيت المثالي ⏱️</button>
-                <button onclick="app.prepareGame('game4')" class="btn-game bg-red-600 p-4 rounded-lg text-xl font-bold">4. تحدي الكلمة واللون 🧠</button>
-                <button onclick="app.prepareGame('game5')" class="btn-game bg-pink-600 p-4 rounded-lg text-xl font-bold">5. تحدي الحارسين 🆚</button>
+                <button onclick="app.prepareGame('game1')" class="btn-game bg-blue-600 p-4 rounded-lg text-xl font-bold">1. تحدي ردة الفعل</button>
+                <button onclick="app.prepareGame('game2')" class="btn-game bg-green-600 p-4 rounded-lg text-xl font-bold">2. تحدي الأكبر والأصغر</button>
+                <button onclick="app.prepareGame('game3')" class="btn-game bg-purple-600 p-4 rounded-lg text-xl font-bold">3. التوقيت المثالي</button>
+                <button onclick="app.prepareGame('game4')" class="btn-game bg-red-600 p-4 rounded-lg text-xl font-bold">4. تحدي الكلمة واللون</button>
+                <button onclick="app.prepareGame('game5')" class="btn-game bg-pink-600 p-4 rounded-lg text-xl font-bold">5. تحدي الحارسين</button>
             </div>
              <div class="mt-8 w-full flex flex-col items-center space-y-4">
                 <button onclick="app.showPage('page-leaderboard-menu')" class="bg-yellow-400 text-gray-900 w-full md:w-1/2 p-4 rounded-lg text-2xl font-black">🏆 لوحة الأبطال 🏆</button>
@@ -100,7 +91,7 @@
                 <a href="https://Keeper-1.com" target="_blank" class="block bg-green-500 text-white w-full md:w-1/2 mx-auto p-3 rounded-lg text-lg font-bold mb-4">🛒 زيارة المتجر</a>
                 <div class="flex justify-center space-x-6">
                      <a href="https://www.instagram.com/keeper1gk" target="_blank" class="text-gray-400 hover:text-white transition text-3xl">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427C2.013 14.784 2 14.43 2 12s.013-2.784.06-3.808c.049-1.064.218-1.791.465-2.427A4.902 4.902 0 013.68 4.465a4.902 4.902 0 011.772-1.153C6.088 3.065 6.815 2.896 7.88 2.847 8.904 2.013 9.258 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.004.048-1.625.2-2.124.385-.583.21-.96.48-1.38.9-.42.42-.69.8-.9 1.38-.185.5-.337 1.12-.385 2.124-.049 1.023-.06 1.351-.06 3.807s.011 2.784.06 3.808c.048 1.003.2 1.624.385 2.124.21.583.48.96.9 1.38.42.42.8.69 1.38.9.5.185 1.12.337 2.124.385 1.023.049 1.351.06 3.807.06h.468c2.456 0 2.784-.011 3.808-.06 1.003-.048 1.624-.2 2.124-.385.583-.21.96-.48 1.38-.9.42-.42.69-.8.9-1.38.185-.5.337-1.12.385-2.124.049-1.024.06-1.351.06-3.808s-.011-2.784-.06-3.808c-.048-1.003-.2-1.624-.385-2.124a3.102 3.102 0 00-.9-1.38 3.102 3.102 0 00-1.38-.9c-.5-.185-1.12-.337-2.124-.385C15.18 3.813 14.852 3.802 12.4 3.802zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM12 14a2 2 0 110-4 2 2 0 010 4zm6.406-7.126a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427C2.013 14.784 2 14.43 2 12s.013-2.784.06-3.808c.049-1.064.218-1.791.465-2.427A4.902 4.902 0 013.68 4.465a4.902 4.902 0 011.772-1.153C6.088 3.065 6.815 2.896 7.88 2.847 8.904 2.013 9.258 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.004.048-1.625.2-2.124.385-.583.21-.96.48-1.38.9-.42.42-.69.8-.9 1.38-.185.5-.337 1.12-.385 2.124-.049 1.023-.06 1.351-.06 3.807s.011 2.784.06 3.808c.048 1.003.2 1.624.385 2.124.21.583.48.96.9 1.38.42.42.8.69 1.38.9.5.185 1.12.337 2.124.385 1.023.049 1.351.06 3.807.06h.468c2.456 0 2.784-.011 3.808-.06 1.003-.048 1.624-.2 2.124-.385.583-.21.96.48 1.38-.9.42-.42.69-.8.9-1.38.185-.5.337-1.12.385-2.124.049-1.024.06-1.351.06-3.808s-.011-2.784-.06-3.808c-.048-1.003-.2-1.624-.385-2.124a3.102 3.102 0 00-.9-1.38 3.102 3.102 0 00-1.38-.9c-.5-.185-1.12-.337-2.124-.385C15.18 3.813 14.852 3.802 12.4 3.802zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zM12 14a2 2 0 110-4 2 2 0 010 4zm6.406-7.126a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
                      </a>
                      <a href="https://www.snapchat.com/add/keeper1gk" target="_blank" class="text-gray-400 hover:text-white transition text-3xl">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.91 2.374c-4.321 0-7.822 3.5-7.822 7.822 0 1.944.71 3.71 1.889 5.093a.382.382 0 00.279.133h.013c.108 0 .21-.05.273-.139l.295-.41c.36-.502.834-.903 1.39-1.183.18-.09.387-.14.593-.14.414 0 .81.163 1.11.455.326.319.742.493 1.17.493s.844-.174 1.17-.493c.3-.292.696-.455 1.11-.455.207 0 .413.05.593.14.557.28 1.031.681 1.39 1.183l.295.41c.063.088.165.139.273.139h.013c.105 0 .204-.04.28-.133 1.178-1.382 1.888-3.148 1.888-5.093 0-4.322-3.501-7.822-7.821-7.822zm-8.736 9.176c-.666 0-1.206.54-1.206 1.206s.54 1.206 1.206 1.206 1.206-.54 1.206-1.206-.54-1.206-1.206-1.206zm16.279 0c-.666 0-1.206.54-1.206 1.206s.54 1.206 1.206 1.206 1.206-.54 1.206-1.206-.54-1.206-1.206-1.206z" /></svg>
@@ -109,49 +100,50 @@
             </div>
         </div>
 
-        <!-- ===== صفحة ادخال البيانات ===== -->
         <div id="page-user-info" class="page flex-col items-center justify-center w-full max-w-sm text-center">
              <h2 class="text-3xl font-bold mb-6">📝 تسجيل بيانات البطل</h2>
              <input type="text" id="player-name" placeholder="اسم الحارس" class="w-full p-3 mb-4 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
              <input type="tel" id="player-phone" placeholder="رقم الجوال (مثال: 05xxxxxxx)" class="w-full p-3 mb-6 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
              <button onclick="app.startGame()" class="bg-green-500 w-full p-4 rounded-lg text-2xl font-black">🔥 ابدأ اللعب 🔥</button>
-             <button onclick="app.showPage('page-menu')" class="mt-4 text-gray-400">العودة للقائمة</button>
+             <button onclick="app.returnToMenu()" class="mt-4 text-gray-400">العودة للقائمة</button>
         </div>
 
-        <!-- ===== لعبة 1: تحدي ردة الفعل ===== -->
         <div id="page-game1" class="page flex-col items-center justify-center w-full max-w-2xl text-center relative">
             <div id="game1-feedback" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl font-black text-white pointer-events-none"></div>
             <h2 class="text-4xl font-black mb-4">تحدي ردة الفعل ⚡</h2>
             <p id="game1-round" class="text-2xl mb-2"></p>
-            <p class="text-xl text-gray-400 mb-6">اضغط على الزر المطابق للون الذي يظهر في المربع!</p>
+            <p class="text-xl text-gray-400 mb-6">اضغط على الزر المطابق للون الذي يظهر في المربع (لديك 10 ثواني)!</p>
             <div id="game1-target-color" class="w-40 h-40 rounded-lg mb-8 mx-auto border-4 border-gray-600 flex items-center justify-center">
                 <p id="game1-wait-msg" class="text-2xl font-bold animate-pulse">استعد...</p>
             </div>
-            <div id="game1-buttons" class="grid grid-cols-3 gap-4">
-                <button onclick="app.game1.checkAnswer('red')" class="color-btn-game1 rounded-full bg-red-600"></button>
-                <button onclick="app.game1.checkAnswer('green')" class="color-btn-game1 rounded-full bg-green-600"></button>
-                <button onclick="app.game1.checkAnswer('blue')" class="color-btn-game1 rounded-full bg-blue-600"></button>
-                <button onclick="app.game1.checkAnswer('yellow')" class="color-btn-game1 rounded-full bg-yellow-400"></button>
-                <button onclick="app.game1.checkAnswer('purple')" class="color-btn-game1 rounded-full bg-purple-600"></button>
-                <button onclick="app.game1.checkAnswer('cyan')" class="color-btn-game1 rounded-full bg-cyan-500"></button>
+            <div id="game1-buttons" class="grid grid-cols-4 gap-3 justify-center">
+                <button onclick="app.games.game1.checkAnswer('red')" class="color-btn-game1 rounded-full bg-red-600"></button>
+                <button onclick="app.games.game1.checkAnswer('green')" class="color-btn-game1 rounded-full bg-green-600"></button>
+                <button onclick="app.games.game1.checkAnswer('blue')" class="color-btn-game1 rounded-full bg-blue-600"></button>
+                <button onclick="app.games.game1.checkAnswer('yellow')" class="color-btn-game1 rounded-full bg-yellow-400"></button>
+                <button onclick="app.games.game1.checkAnswer('purple')" class="color-btn-game1 rounded-full bg-purple-600"></button>
+                <button onclick="app.games.game1.checkAnswer('cyan')" class="color-btn-game1 rounded-full bg-cyan-500"></button>
+                <button onclick="app.games.game1.checkAnswer('white')" class="color-btn-game1 rounded-full bg-white"></button>
+                <button onclick="app.games.game1.checkAnswer('black')" class="color-btn-game1 rounded-full bg-black"></button>
             </div>
             <div id="game1-results-table" class="mt-8 w-full max-w-md"></div>
-             <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">الخروج من اللعبة</button>
+             <button onclick="app.returnToMenu()" class="mt-8 text-gray-400">الخروج من اللعبة</button>
         </div>
 
-        <!-- ===== لعبة 2: اختر الأصغر/الأكبر ===== -->
-        <div id="page-game2" class="page flex-col items-center justify-center w-full max-w-3xl text-center">
+        <div id="page-game2" class="page flex-col items-center justify-center w-full max-w-4xl text-center">
             <div class="w-full flex justify-between items-center mb-4">
                 <div id="game2-timer" class="text-2xl font-bold bg-red-600 px-4 py-2 rounded-lg">30</div>
-                <h2 class="text-4xl font-black">اختر الأصغر / الأكبر ⚖️</h2>
-                <div id="game2-score" class="text-2xl font-bold bg-green-600 px-4 py-2 rounded-lg">0</div>
+                <h2 class="text-4xl font-black">تحدي الأكبر والأصغر</h2>
+                <div class="text-right">
+                    <p class="text-lg text-gray-400">النتيجة</p>
+                    <p id="game2-score" class="text-2xl font-bold text-yellow-400">0</p>
+                </div>
             </div>
             <p id="game2-instruction" class="text-3xl font-bold my-6 p-3 bg-gray-700 rounded-lg"></p>
-            <div id="game2-shape-container" class="flex justify-around items-center w-full h-64"></div>
-            <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">الخروج من اللعبة</button>
+            <div id="game2-shape-container" class="grid grid-cols-3 md:grid-cols-3 gap-4 w-full h-80 place-items-center"></div>
+            <button onclick="app.returnToMenu()" class="mt-8 text-gray-400">الخروج من اللعبة</button>
         </div>
 
-        <!-- ===== لعبة 3: التوقيت المثالي ===== -->
         <div id="page-game3" class="page flex-col items-center justify-center w-full max-w-2xl text-center">
             <h2 class="text-4xl font-black mb-2">التوقيت المثالي ⏱️</h2>
             <p id="game3-round" class="text-2xl mb-4"></p>
@@ -165,27 +157,30 @@
                 <button id="game3-action-btn" class="w-full p-4 text-3xl font-black rounded-lg transition"></button>
             </div>
             <div id="game3-results-table" class="mt-6 w-full max-w-md"></div>
-            <button onclick="app.showPage('page-menu')" class="mt-6 text-gray-400">الخروج من اللعبة</button>
+            <button onclick="app.returnToMenu()" class="mt-6 text-gray-400">الخروج من اللعبة</button>
         </div>
         
-        <!-- ===== لعبة 4: تحدي الكلمة واللون ===== -->
         <div id="page-game4" class="page flex-col items-center justify-center w-full max-w-3xl text-center">
-            <h2 class="text-4xl font-black mb-2">تحدي الكلمة واللون 🧠</h2>
-            <p id="game4-round" class="text-2xl mb-4"></p>
+             <div class="w-full flex justify-between items-center mb-4">
+                <p id="game4-round" class="text-2xl font-bold">الجولة 1 / 10</p>
+                <h2 class="text-4xl font-black">تحدي الكلمة واللون 🧠</h2>
+                <div class="text-right">
+                    <p class="text-lg text-gray-400">النقاط</p>
+                    <p id="game4-score" class="text-2xl font-bold text-yellow-400">0</p>
+                </div>
+            </div>
             <p class="text-xl text-gray-400 mb-6">اضغط على الزر الذي يطابق **الكلمة المكتوبة**، وليس لونها!</p>
-            <div id="game4-target-word" class="text-6xl font-black mb-8 p-4 rounded-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">أحمر</div>
-            <div id="game4-buttons" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
-            <div id="game4-results-table" class="mt-8 w-full max-w-md"></div>
-            <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">الخروج من اللعبة</button>
+            <div id="game4-target-word" class="text-6xl font-black my-8 p-4 rounded-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">أحمر</div>
+            <div id="game4-buttons" class="grid grid-cols-4 gap-4"></div>
+            <button onclick="app.returnToMenu()" class="mt-8 text-gray-400">الخروج من اللعبة</button>
         </div>
 
-        <!-- ===== لعبة 5: تحدي الحارسين ===== -->
         <div id="page-game5" class="page flex-col items-center justify-center w-full max-w-2xl text-center">
              <div id="game5-setup">
                 <h2 class="text-3xl font-bold mb-6">👥 تسجيل أسماء الحارسين</h2>
                 <input type="text" id="player1-name" placeholder="اسم الحارس الأول" class="w-full p-3 mb-4 bg-gray-700 rounded-lg border border-gray-600">
                 <input type="text" id="player2-name" placeholder="اسم الحارس الثاني" class="w-full p-3 mb-6 bg-gray-700 rounded-lg border border-gray-600">
-                <button onclick="app.game5.start()" class="bg-green-500 w-full p-4 rounded-lg text-2xl font-black">💪 ابدأ التحدي 💪</button>
+                <button onclick="app.games.game5.start()" class="bg-green-500 w-full p-4 rounded-lg text-2xl font-black">💪 ابدأ التحدي 💪</button>
              </div>
              <div id="game5-play" class="hidden w-full">
                 <div class="flex justify-between items-center w-full mb-4 text-2xl font-bold">
@@ -195,53 +190,53 @@
                 </div>
                 <p class="text-xl text-gray-400 mb-4">اضغط على اللون **المعاكس** للون الظاهر في المربع!</p>
                 <div id="game5-target-color" class="w-32 h-32 rounded-lg mb-6 mx-auto border-4 border-gray-600"></div>
-                <div id="game5-buttons" class="grid grid-cols-3 gap-4"></div>
+                <div id="game5-buttons" class="grid grid-cols-4 gap-4 place-items-center"></div>
                 <div id="game5-player-choice" class="hidden fixed inset-0 modal flex items-center justify-center flex-col p-4">
                     <h3 class="text-3xl font-bold mb-4">من الذي ضغط؟</h3>
                     <div class="flex gap-4">
-                        <button id="p1-choice-btn" onclick="app.game5.selectPlayer(0)" class="text-2xl font-bold bg-blue-600 p-4 rounded-lg"></button>
-                        <button id="p2-choice-btn" onclick="app.game5.selectPlayer(1)" class="text-2xl font-bold bg-red-600 p-4 rounded-lg"></button>
+                        <button id="p1-choice-btn" onclick="app.games.game5.selectPlayer(0)" class="text-2xl font-bold bg-blue-600 p-4 rounded-lg"></button>
+                        <button id="p2-choice-btn" onclick="app.games.game5.selectPlayer(1)" class="text-2xl font-bold bg-red-600 p-4 rounded-lg"></button>
                     </div>
                 </div>
              </div>
-              <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">العودة للقائمة الرئيسية</button>
+              <button onclick="app.returnToMenu()" class="mt-8 text-gray-400">العودة للقائمة الرئيسية</button>
         </div>
         
-        <!-- ===== شاشة نهاية اللعبة ===== -->
         <div id="page-end-game-summary" class="modal page fixed inset-0 items-center justify-center">
             <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md text-center border-2 border-yellow-400">
                 <h2 id="summary-title" class="text-4xl font-black text-yellow-400 mb-4">انتهى التحدي!</h2>
                 <p id="summary-message" class="text-xl text-gray-300 mb-6"></p>
-                <div id="summary-score" class="text-7xl font-black mb-8"></div>
-                <button onclick="app.submitScore()" class="bg-green-500 w-full p-4 rounded-lg text-xl font-bold mb-4">إرسال النتيجة للوحة الأبطال</button>
-                <button onclick="app.showPage('page-menu')" class="bg-gray-600 w-full p-3 rounded-lg text-lg">العودة للقائمة الرئيسية</button>
+                <div id="summary-score" class="text-6xl md:text-7xl font-black mb-6"></div>
+                
+                <p class="text-lg text-gray-300 my-4">استخدم كود الخصم <span class="font-bold text-yellow-400 text-2xl tracking-widest bg-gray-900 px-2 py-1 rounded">K1</span> في متجرنا!</p>
+                <a href="https://Keeper-1.com" target="_blank" class="block bg-green-500 w-full p-3 rounded-lg text-lg font-bold mb-4 hover:bg-green-600 transition">🛒 زيارة المتجر الآن</a>
+                <button id="whatsapp-share-btn" class="bg-whatsapp-green w-full p-3 rounded-lg text-lg font-bold mb-4 text-white transition">🔗 مشاركة النتيجة عبر واتساب</button>
+                <button onclick="app.submitScore()" class="bg-blue-600 w-full p-4 rounded-lg text-xl font-bold mb-4 hover:bg-blue-700 transition">إرسال النتيجة للوحة الأبطال</button>
+                <button onclick="app.returnToMenu()" class="bg-gray-600 w-full p-3 rounded-lg text-lg hover:bg-gray-700 transition">العودة للقائمة الرئيسية</button>
+                
                 <div id="submission-status" class="mt-4 text-lg"></div>
             </div>
         </div>
 
-        <!-- ===== قائمة لوحة الصدارة ===== -->
         <div id="page-leaderboard-menu" class="page flex-col items-center justify-center w-full max-w-md text-center">
             <h2 class="text-4xl font-black mb-6">🏆 لوحة الأبطال 🏆</h2>
             <div class="grid grid-cols-1 gap-4 w-full">
                 <button onclick="app.showLeaderboard('game1')" class="btn-game bg-blue-600 p-4 rounded-lg text-xl font-bold">لوحة تحدي ردة الفعل</button>
-                <button onclick="app.showLeaderboard('game2')" class="btn-game bg-green-600 p-4 rounded-lg text-xl font-bold">لوحة اختر الأصغر/الأكبر</button>
+                <button onclick="app.showLeaderboard('game2')" class="btn-game bg-green-600 p-4 rounded-lg text-xl font-bold">لوحة تحدي الأكبر والأصغر</button>
                 <button onclick="app.showLeaderboard('game3')" class="btn-game bg-purple-600 p-4 rounded-lg text-xl font-bold">لوحة التوقيت المثالي</button>
                 <button onclick="app.showLeaderboard('game4')" class="btn-game bg-red-600 p-4 rounded-lg text-xl font-bold">لوحة تحدي الكلمة</button>
             </div>
              <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">العودة للقائمة الرئيسية</button>
         </div>
         
-        <!-- ===== صفحة لوحة الصدارة ===== -->
         <div id="page-leaderboard" class="page flex-col w-full max-w-4xl px-4">
              <h2 id="leaderboard-title" class="text-4xl font-black mb-4 text-center text-yellow-400">لوحة الأبطال</h2>
-             
              <div id="leaderboard-filters" class="flex flex-wrap justify-center gap-2 mb-4">
                 <button data-period="all" onclick="app.applyLeaderboardFilter('all')" class="filter-btn active">طوال الفترة</button>
                 <button data-period="24h" onclick="app.applyLeaderboardFilter('24h')" class="filter-btn">آخر 24 ساعة</button>
                 <button data-period="week" onclick="app.applyLeaderboardFilter('week')" class="filter-btn">آخر أسبوع</button>
                 <button data-period="month" onclick="app.applyLeaderboardFilter('month')" class="filter-btn">آخر شهر</button>
             </div>
-
             <div id="find-rank-section" class="mb-6 bg-gray-900 p-4 rounded-lg">
                 <h3 class="text-xl font-bold mb-2 text-center">ابحث عن ترتيبك 🏅</h3>
                 <div class="flex flex-col sm:flex-row gap-2">
@@ -250,49 +245,38 @@
                 </div>
                 <div id="rank-result" class="mt-3 text-lg font-semibold text-center text-yellow-300 min-h-[2.5rem]"></div>
             </div>
-
              <div class="w-full overflow-x-auto">
                 <table class="w-full text-left bg-gray-800 rounded-lg overflow-hidden">
-                    <thead>
-                        <tr class="bg-gray-900 text-yellow-400">
-                            <th class="p-3">الترتيب</th>
-                            <th class="p-3">الاسم</th>
-                            <th class="p-3">النتيجة</th>
-                            <th class="p-3 hidden md:table-cell">التاريخ</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboard-body">
-                        <!-- البيانات ستضاف هنا -->
-                    </tbody>
+                    <thead><tr class="bg-gray-900 text-yellow-400"><th class="p-3">الترتيب</th><th class="p-3">الاسم</th><th class="p-3">النتيجة</th><th class="p-3 hidden md:table-cell">التاريخ</th></tr></thead>
+                    <tbody id="leaderboard-body"></tbody>
                 </table>
              </div>
              <div id="leaderboard-loading" class="text-center p-8 text-2xl hidden">جاري تحميل البيانات...</div>
              <button onclick="app.showPage('page-leaderboard-menu')" class="mt-8 text-gray-400 self-center">العودة</button>
         </div>
 
-        <!-- ===== صفحة التعليمات ===== -->
         <div id="page-instructions" class="page flex-col w-full max-w-2xl px-4 text-center">
             <h2 class="text-4xl font-black mb-6 text-yellow-400">📜 تعليمات الألعاب</h2>
             <div class="space-y-6 text-right bg-gray-800 p-6 rounded-lg">
                 <div>
                     <h3 class="text-2xl font-bold text-blue-400 mb-2">1. تحدي ردة الفعل ⚡</h3>
-                    <p>يظهر لون في المربع، وعليك الضغط على الزر بنفس اللون بأسرع ما يمكن. يتم احتساب نتيجتك بالمللي ثانية. كلما كان وقتك أقل، كانت نتيجتك أفضل.</p>
+                    <p>10 جولات سريعة. يظهر لون في المربع، وعليك الضغط على الزر بنفس اللون بأسرع ما يمكن. لديك 10 ثوانٍ لكل جولة، إذا لم تجب أو أخطأت، ستحتسب عليك عقوبة. نتيجتك النهائية هي متوسط وقت الاستجابة.</p>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold text-green-400 mb-2">2. اختر الأصغر / الأكبر ⚖️</h3>
-                    <p>تظهر لك تعليمة (مثلاً "اختر الأكبر"). يظهر شكلان مختلفان في الحجم. اضغط على الشكل الصحيح قبل انتهاء الوقت (30 ثانية). كل إجابة صحيحة تزيد نقاطك.</p>
+                    <h3 class="text-2xl font-bold text-green-400 mb-2">2. تحدي الأكبر والأصغر ⚖️</h3>
+                    <p>لديك 30 ثانية. في كل جولة تظهر لك 6 أشكال مختلفة مع تعليمة عشوائية (اختر الأكبر، الأصغر، أو لون معين). كل إجابة صحيحة تمنحك نقطة. حاول جمع أكبر عدد من النقاط.</p>
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold text-purple-400 mb-2">3. التوقيت المثالي ⏱️</h3>
-                    <p>يظهر لك رقم عشوائي (مثلاً 5.30 ثانية). عليك إيقاف العداد عند هذا الرقم بالضبط. كلما كنت أقرب للرقم المطلوب، حصلت على نقاط وتقييم أفضل.</p>
+                    <p>5 جولات. يظهر لك رقم عشوائي (مثلاً 5.30 ثانية). عليك إيقاف العداد عند هذا الرقم بالضبط. كلما كنت أقرب للرقم المطلوب، كانت نتيجتك أفضل.</p>
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold text-red-400 mb-2">4. تحدي الكلمة واللون 🧠</h3>
-                    <p>تظهر لك كلمة (مثلاً "أزرق") ملونة بلون مختلف (مثلاً لونها أحمر). يجب عليك تجاهل لون الكلمة والضغط على الزر الذي يطابق الكلمة المكتوبة.</p>
+                    <p>10 جولات. تظهر لك كلمة ملونة بلون مختلف. يجب عليك تجاهل لون الكلمة والضغط على الزر الذي يطابق الكلمة المكتوبة. نتيجتك تعتمد على صحة إجابتك وسرعة استجابتك.</p>
                 </div>
                  <div>
                     <h3 class="text-2xl font-bold text-pink-400 mb-2">5. تحدي الحارسين 🆚</h3>
-                    <p>لعبة لشخصين. يظهر لون في المربع، وعلى كلا اللاعبين محاولة الضغط على اللون المعاكس له. (أبيض↔أسود، أحمر↔أزرق، أصفر↔أخضر). الأسرع يحصل على النقطة.</p>
+                    <p>10 جولات لشخصين. يظهر لون في المربع، وعلى كلا اللاعبين محاولة الضغط على اللون المعاكس له من بين 8 ألوان. الأسرع يحصل على النقطة.</p>
                 </div>
             </div>
             <button onclick="app.showPage('page-menu')" class="mt-8 text-gray-400">فهمت، لنبدأ!</button>
@@ -300,9 +284,7 @@
 
     </div>
 
-    <!-- Firebase SDK & App Logic -->
     <script type="module">
-        // استيراد الدوال اللازمة من SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getDatabase, ref, push, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -318,754 +300,315 @@
             measurementId: "G-2PX0QX0PLZ"
         };
         
-        // تعريف متغير قاعدة البيانات في النطاق الأعلى للوصول إليه في كل مكان
         let db;
-
-        // تهيئة Firebase
         try {
             const firebaseApp = initializeApp(firebaseConfig);
-            const auth = getAuth(firebaseApp);
-            db = getDatabase(firebaseApp); // إسناد قيمة لقاعدة البيانات
-            
-            await signInAnonymously(auth);
-            console.log("Firebase initialized and signed in anonymously.");
-            
+            db = getDatabase(firebaseApp);
+            await signInAnonymously(getAuth(firebaseApp));
         } catch (error) {
-            console.error("Firebase initialization or sign-in failed.", error);
-            alert("فشل الاتصال بـ Firebase. يرجى التأكد من صحة بيانات الإعدادات (firebaseConfig) في الكود، وتفعيل 'Anonymous sign-in' في لوحة تحكم Firebase.");
+            console.error("Firebase initialization failed.", error);
+            alert("فشل الاتصال بقاعدة البيانات.");
         }
 
-        // الكود الكامل للتطبيق
         const app = {
             pages: document.querySelectorAll('.page'),
-            activePage: 'page-menu',
             currentGameId: null,
-            currentPlayer: { name: '', phone: '' },
+            currentPlayer: {},
             currentScore: 0,
-            currentLeaderboardGameId: null,
-            allScoresForCurrentGame: [],
-
+            
             showPage(pageId) {
-                this.pages.forEach(page => {
-                    page.classList.remove('active');
-                    if(page.id === pageId) {
-                        page.classList.add('active');
-                        this.activePage = pageId;
-                    }
-                });
+                this.pages.forEach(p => p.classList.remove('active'));
+                document.getElementById(pageId)?.classList.add('active');
             },
             prepareGame(gameId) {
                 this.currentGameId = gameId;
-                const savedName = localStorage.getItem('k1_player_name');
-                if(savedName) {
-                    document.getElementById('player-name').value = savedName;
-                }
+                document.getElementById('player-name').value = localStorage.getItem('k1_player_name') || '';
                 this.showPage('page-user-info');
             },
             startGame() {
                 const name = document.getElementById('player-name').value.trim();
                 const phone = document.getElementById('player-phone').value.trim();
-                if(name === '' || phone === '') {
-                    alert('الرجاء إدخال الاسم ورقم الجوال');
+                if (!name || !/^(05|5)\d{8}$/.test(phone)) {
+                    alert('الرجاء إدخال اسم ورقم جوال سعودي صحيح');
                     return;
                 }
-                if(!/^(05|5)\d{8}$/.test(phone)) {
-                    alert('الرجاء إدخال رقم جوال سعودي صحيح يبدأ بـ 05');
-                    return;
-                }
-                this.currentPlayer.name = name;
-                this.currentPlayer.phone = phone;
-                // حفظ اسم اللاعب في التخزين المحلي
+                this.currentPlayer = { name, phone };
                 localStorage.setItem('k1_player_name', name);
                 this.showPage(`page-${this.currentGameId}`);
-                
-                // بدء اللعبة المحددة
-                switch(this.currentGameId) {
-                    case 'game1': this.game1.start(); break;
-                    case 'game2': this.game2.start(); break;
-                    case 'game3': this.game3.start(); break;
-                    case 'game4': this.game4.start(); break;
-                    case 'game5': 
-                        document.getElementById('game5-play').classList.add('hidden');
-                        document.getElementById('game5-setup').classList.remove('hidden');
-                        this.showPage('page-game5'); 
-                        break;
-                }
+                this.games[this.currentGameId]?.start();
             },
-
-            endGame(score, message, title) {
+            endGame(score, message, title, results = null) {
                 this.currentScore = score;
+                const scoreDisplayEl = document.getElementById('summary-score');
+                const shareBtn = document.getElementById('whatsapp-share-btn');
+                
                 document.getElementById('summary-title').textContent = title || 'انتهى التحدي!';
                 document.getElementById('summary-message').textContent = message;
-                document.getElementById('summary-score').textContent = score;
+                
+                if (this.currentGameId === 'game1' || this.currentGameId === 'game3') {
+                    scoreDisplayEl.textContent = this.formatReactionTime(score, true);
+                } else {
+                    scoreDisplayEl.textContent = score;
+                }
+                
+                if (this.currentGameId === 'game1' && results) {
+                    shareBtn.style.display = 'block';
+                    let details = '📊 تفاصيل الجولات:\n';
+                    results.forEach((r, i) => {
+                        details += `الجولة ${i + 1}: ${this.formatReactionTime(r.time)}${r.correct ? '' : ' (خطأ)'}\n`;
+                    });
+                    const text = `🏆 حققت نتيجة رائعة في تحدي ردة الفعل!\n\n*الحارس:* ${this.currentPlayer.name}\n*متوسط الاستجابة:* ${this.formatReactionTime(score, true)}\n\n${details}\nأتท้าทายك تتغلب على نتيجتي! 💪\n\nجرّب تحدي كيبر ون بنفسك:\n${window.location.href}`;
+                    shareBtn.onclick = () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+                } else {
+                    shareBtn.style.display = 'none';
+                }
+
                 document.getElementById('submission-status').textContent = '';
                 this.showPage('page-end-game-summary');
             },
-
             async submitScore() {
                 const statusDiv = document.getElementById('submission-status');
-                if (!db) {
-                    statusDiv.textContent = 'فشل الإرسال: لم يتم الاتصال بقاعدة البيانات.';
-                    statusDiv.style.color = 'red';
-                    return;
-                }
-                
-                statusDiv.textContent = 'جاري إرسال النتيجة...';
-                statusDiv.style.color = 'white';
-
-                const finalScore = this.currentScore;
-
-                const scoreData = {
-                    name: this.currentPlayer.name,
-                    phone: this.currentPlayer.phone,
-                    game: this.currentGameId,
-                    score: finalScore,
-                    timestamp: new Date().toISOString()
-                };
-
+                if (!db) { statusDiv.textContent = 'فشل: لم يتم الاتصال بقاعدة البيانات.'; return; }
+                statusDiv.textContent = 'جاري الإرسال...';
                 try {
-                    const scoresRef = ref(db, 'scores');
-                    await push(scoresRef, scoreData);
-                    statusDiv.textContent = '✅ تم إرسال نتيجتك بنجاح!';
-                    statusDiv.style.color = 'lightgreen';
+                    await push(ref(db, 'scores'), { ...this.currentPlayer, game: this.currentGameId, score: this.currentScore, timestamp: new Date().toISOString() });
+                    statusDiv.textContent = '✅ تم الإرسال بنجاح!';
                 } catch (error) {
+                    statusDiv.textContent = '❌ فشل الإرسال.';
                     console.error("Error saving score: ", error);
-                    statusDiv.textContent = '❌ فشل الإرسال. الرجاء المحاولة مرة أخرى.';
-                    statusDiv.style.color = 'red';
                 }
             },
-            
+            returnToMenu() {
+                this.games[this.currentGameId]?.clearTimers?.();
+                this.currentGameId = null;
+                this.showPage('page-menu');
+            },
+            formatReactionTime(ms, forceSeconds = false) {
+                if (ms < 1000 && !forceSeconds) return `${ms} م.ث`;
+                return `${(ms / 1000).toFixed(3)} ثانية`;
+            },
             async showLeaderboard(gameId) {
                 this.currentLeaderboardGameId = gameId;
+                const gameTitles = { 'game1': 'لوحة تحدي ردة الفعل', 'game2': 'لوحة تحدي الأكبر والأصغر', 'game3': 'لوحة التوقيت المثالي', 'game4': 'لوحة تحدي الكلمة' };
+                document.getElementById('leaderboard-title').textContent = gameTitles[gameId] || 'لوحة الأبطال';
                 this.showPage('page-leaderboard');
-                const titleEl = document.getElementById('leaderboard-title');
-                const bodyEl = document.getElementById('leaderboard-body');
-                const loadingEl = document.getElementById('leaderboard-loading');
-                const rankResultEl = document.getElementById('rank-result');
-                const rankSearchInput = document.getElementById('rank-search-name');
-
-                rankResultEl.innerHTML = '';
-                rankSearchInput.value = localStorage.getItem('k1_player_name') || '';
-
-
-                const gameTitles = {
-                    'game1': 'لوحة تحدي ردة الفعل',
-                    'game2': 'لوحة اختر الأصغر/الأكبر',
-                    'game3': 'لوحة التوقيت المثالي',
-                    'game4': 'لوحة تحدي الكلمة',
-                };
-                titleEl.textContent = gameTitles[gameId] || 'لوحة الأبطال';
-                bodyEl.innerHTML = '';
-                loadingEl.classList.remove('hidden');
-
+                document.getElementById('leaderboard-loading').classList.remove('hidden');
+                document.getElementById('leaderboard-body').innerHTML = '';
                 try {
-                    const scoresRef = ref(db, 'scores');
-                    const snapshot = await get(scoresRef);
-
+                    const snapshot = await get(ref(db, 'scores'));
                     let scores = [];
-                    if (snapshot.exists()) {
-                        snapshot.forEach(childSnapshot => {
-                            const data = childSnapshot.val();
-                            if (data.game === gameId) {
-                                scores.push(data);
-                            }
-                        });
-                    }
-                    
-                    this.allScoresForCurrentGame = scores;
+                    if (snapshot.exists()) snapshot.forEach(child => { const d = child.val(); if (d.game === gameId) scores.push(d); });
+                    const isReactionGame = gameId === 'game1' || gameId === 'game3';
+                    const bestScores = new Map();
+                    scores.forEach(s => {
+                        const key = s.name.trim().toLowerCase();
+                        const existing = bestScores.get(key);
+                        if (!existing || (isReactionGame && s.score < existing.score) || (!isReactionGame && s.score > existing.score)) bestScores.set(key, s);
+                    });
+                    this.allScoresForCurrentGame = [...bestScores.values()];
                     this.applyLeaderboardFilter('all');
-
                 } catch (error) {
                     console.error("Error fetching leaderboard: ", error);
-                    bodyEl.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">فشل تحميل البيانات.</td></tr>`;
+                    document.getElementById('leaderboard-body').innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-400">فشل تحميل البيانات.</td></tr>`;
                 } finally {
-                    loadingEl.classList.add('hidden');
+                    document.getElementById('leaderboard-loading').classList.add('hidden');
                 }
             },
-            
             applyLeaderboardFilter(period) {
-                document.querySelectorAll('#leaderboard-filters .filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.period === period) {
-                        btn.classList.add('active');
-                    }
-                });
-
-                const bodyEl = document.getElementById('leaderboard-body');
-                bodyEl.innerHTML = '';
-                
+                document.querySelectorAll('#leaderboard-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector(`#leaderboard-filters .filter-btn[data-period='${period}']`).classList.add('active');
                 let scores = [...this.allScoresForCurrentGame];
-                const now = new Date();
-
                 if (period !== 'all') {
-                    let cutoffDate = new Date();
-                    if (period === '24h') {
-                        cutoffDate.setDate(now.getDate() - 1);
-                    } else if (period === 'week') {
-                        cutoffDate.setDate(now.getDate() - 7);
-                    } else if (period === 'month') {
-                        cutoffDate.setMonth(now.getMonth() - 1);
-                    }
-                    scores = scores.filter(score => score.timestamp && new Date(score.timestamp) > cutoffDate);
+                    const now = new Date(); let cutoff = new Date();
+                    if (period === '24h') cutoff.setDate(now.getDate() - 1);
+                    else if (period === 'week') cutoff.setDate(now.getDate() - 7);
+                    else if (period === 'month') cutoff.setMonth(now.getMonth() - 1);
+                    scores = scores.filter(s => s.timestamp && new Date(s.timestamp) > cutoff);
                 }
-
                 const isReactionGame = this.currentLeaderboardGameId === 'game1' || this.currentLeaderboardGameId === 'game3';
                 scores.sort((a, b) => isReactionGame ? a.score - b.score : b.score - a.score);
-                
+                const bodyEl = document.getElementById('leaderboard-body'); bodyEl.innerHTML = '';
                 const top10 = scores.slice(0, 10);
-
-                if (top10.length === 0) {
-                    bodyEl.innerHTML = `<tr><td colspan="4" class="p-4 text-center">لا توجد نتائج لهذه الفترة. كن أول الأبطال!</td></tr>`;
-                } else {
-                    top10.forEach((score, index) => {
-                        const rank = index + 1;
-                        let rankDisplay;
-                        if (rank === 1) rankDisplay = '🥇';
-                        else if (rank === 2) rankDisplay = '🥈';
-                        else if (rank === 3) rankDisplay = '🥉';
-                        else rankDisplay = rank;
-                        
-                        const date = score.timestamp ? new Date(score.timestamp).toLocaleDateString('ar-SA') : 'غير معروف';
-                        const scoreDisplay = isReactionGame ? `${score.score} م.ث` : `${score.score} نقطة`;
-
-                        const row = `
-                            <tr class="border-b border-gray-700 hover:bg-gray-700">
-                                <td class="p-3 font-bold text-lg">${rankDisplay}</td>
-                                <td class="p-3">${score.name}</td>
-                                <td class="p-3 font-mono">${scoreDisplay}</td>
-                                <td class="p-3 hidden md:table-cell text-sm text-gray-400">${date}</td>
-                            </tr>`;
-                        bodyEl.innerHTML += row;
-                    });
-                }
-
-                const savedName = localStorage.getItem('k1_player_name');
-                if (savedName) {
-                    const isPlayerInTop10 = top10.some(score => score.name.toLowerCase() === savedName.toLowerCase());
-                    if (!isPlayerInTop10) {
-                         const playerIndex = scores.findIndex(score => score.name.toLowerCase() === savedName.toLowerCase());
-                         if (playerIndex !== -1) {
-                            const rank = playerIndex + 1;
-                            const score = scores[playerIndex];
-                            const date = score.timestamp ? new Date(score.timestamp).toLocaleDateString('ar-SA') : 'غير معروف';
-                            const scoreDisplay = isReactionGame ? `${score.score} م.ث` : `${score.score} نقطة`;
-                            
-                            bodyEl.innerHTML += `
-                                <tr class="bg-gray-900">
-                                    <td colspan="4" class="text-center py-2 px-3">
-                                        <div class="border-t-2 border-dashed border-gray-600"></div>
-                                    </td>
-                                </tr>
-                            `;
-
-                            const playerRow = `
-                                <tr class="bg-blue-900/50 border-b border-gray-700">
-                                    <td class="p-3 font-bold text-lg text-yellow-300">${rank}</td>
-                                    <td class="p-3 text-yellow-300 font-bold">${score.name} (أنت)</td>
-                                    <td class="p-3 font-mono text-yellow-300 font-bold">${scoreDisplay}</td>
-                                    <td class="p-3 hidden md:table-cell text-sm text-gray-400">${date}</td>
-                                </tr>`;
-                            bodyEl.innerHTML += playerRow;
-                        }
+                if (top10.length === 0) { bodyEl.innerHTML = `<tr><td colspan="4" class="p-4 text-center">لا توجد نتائج لهذه الفترة.</td></tr>`; } 
+                else { top10.forEach((score, i) => bodyEl.innerHTML += this.createLeaderboardRow(score, i + 1)); }
+                const savedName = localStorage.getItem('k1_player_name')?.toLowerCase();
+                if (savedName && !top10.some(s => s.name.toLowerCase() === savedName)) {
+                    const pIndex = scores.findIndex(s => s.name.toLowerCase() === savedName);
+                    if (pIndex !== -1) {
+                        bodyEl.innerHTML += `<tr><td colspan="4" class="py-2"><div class="border-t-2 border-dashed border-gray-600"></div></td></tr>`;
+                        bodyEl.innerHTML += this.createLeaderboardRow(scores[pIndex], pIndex + 1, true);
                     }
                 }
             },
-
-            findMyRank() {
-                const nameToFindInput = document.getElementById('rank-search-name');
-                const nameToFind = nameToFindInput.value.trim();
-                const resultEl = document.getElementById('rank-result');
-
-                if (!nameToFind) {
-                    resultEl.textContent = 'الرجاء إدخال اسم للبحث.';
-                    return;
-                }
-                
-                localStorage.setItem('k1_player_name', nameToFind);
-
-                let scores = [...this.allScoresForCurrentGame];
-                const isReactionGame = this.currentLeaderboardGameId === 'game1' || this.currentLeaderboardGameId === 'game3';
-                scores.sort((a, b) => isReactionGame ? a.score - b.score : b.score - a.score);
-                
-                const lowerCaseNameToFind = nameToFind.toLowerCase();
-                const similarResults = scores
-                    .map((score, index) => ({ ...score, rank: index + 1 }))
-                    .filter(score => score.name.toLowerCase().includes(lowerCaseNameToFind));
-
-                if (similarResults.length > 0) {
-                    let resultsHTML = '<p class="mb-2 text-base">نتائج البحث المشابهة:</p><ul class="text-left max-h-32 overflow-y-auto text-sm pr-4">';
-                    similarResults.forEach(result => {
-                         const scoreDisplay = isReactionGame ? `${result.score} م.ث` : `${result.score} نقطة`;
-                         resultsHTML += `<li class="mb-1"><span class="font-bold text-white">${result.name}</span> - الترتيب: ${result.rank} (${scoreDisplay})</li>`;
-                    });
-                    resultsHTML += '</ul>';
-                    resultEl.innerHTML = resultsHTML;
+            createLeaderboardRow(score, rank, isPlayer = false) {
+                let rankDisplay = rank; if (rank === 1) rankDisplay = '🥇'; else if (rank === 2) rankDisplay = '🥈'; else if (rank === 3) rankDisplay = '🥉';
+                const date = score.timestamp ? new Date(score.timestamp).toLocaleDateString('ar-SA') : 'N/A';
+                const isReaction = this.currentLeaderboardGameId === 'game1' || this.currentLeaderboardGameId === 'game3';
+                let scoreDisplay;
+                if (isReaction) {
+                    const seconds = (score.score / 1000).toFixed(3);
+                    scoreDisplay = `<span>${seconds} ثانية</span><br><span class="text-xs text-gray-400 font-normal">(سرعة استجابة ${score.score} ملي ثانية)</span>`;
                 } else {
-                    resultEl.textContent = `لم يتم العثور على نتائج للاسم "${nameToFind}".`;
+                    scoreDisplay = `${score.score} نقطة`;
                 }
-                
-                this.applyLeaderboardFilter(document.querySelector('#leaderboard-filters .filter-btn.active').dataset.period);
+                const playerClass = isPlayer ? 'bg-blue-900/50 text-yellow-300 font-bold' : '';
+                return `<tr class="border-b border-gray-700 hover:bg-gray-700 ${playerClass}"><td class="p-3 text-lg">${rankDisplay}</td><td class="p-3">${score.name}${isPlayer ? ' (أنت)' : ''}</td><td class="p-3 font-mono leading-tight">${scoreDisplay}</td><td class="p-3 hidden md:table-cell text-sm text-gray-400">${date}</td></tr>`;
             },
-
-
-            game1: {
-                round: 0,
-                totalRounds: 5,
-                startTime: 0,
-                targetColor: '',
-                colors: ['red', 'green', 'blue', 'yellow', 'purple', 'cyan'],
-                results: [],
-                timeoutId: null,
-
-                start() {
-                    this.round = 0;
-                    this.results = [];
-                    document.getElementById('game1-results-table').innerHTML = '';
-                    this.nextRound();
+            findMyRank() { const name = document.getElementById('rank-search-name').value.trim(); if (!name) return; localStorage.setItem('k1_player_name', name); this.applyLeaderboardFilter(document.querySelector('#leaderboard-filters .filter-btn.active').dataset.period); },
+            showFeedback(text, color) { const el = document.createElement('div'); el.textContent = text; el.className = `fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-black p-4 rounded-lg shadow-lg z-50 feedback-animation ${color === 'green' ? 'bg-green-500/90' : 'bg-red-500/90'} text-white`; document.body.appendChild(el); setTimeout(() => el.remove(), 1500); },
+            games: {
+                game1: {
+                    round: 0, totalRounds: 10, startTime: 0, colors: ['red', 'green', 'blue', 'yellow', 'purple', 'cyan', 'white', 'black'], results: [], timeoutId: null, roundTimeoutId: null,
+                    clearTimers() { clearTimeout(this.timeoutId); clearTimeout(this.roundTimeoutId); },
+                    start() { this.round = 0; this.results = []; document.getElementById('game1-results-table').innerHTML = ''; this.nextRound(); },
+                    nextRound() {
+                        if (++this.round > this.totalRounds) { this.end(); return; }
+                        document.getElementById('game1-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
+                        const targetEl = document.getElementById('game1-target-color'); targetEl.style.backgroundColor = '#1a202c';
+                        document.getElementById('game1-wait-msg').style.display = 'block'; document.getElementById('game1-buttons').style.pointerEvents = 'none'; this.clearTimers();
+                        this.timeoutId = setTimeout(() => {
+                            const targetColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+                            targetEl.dataset.color = targetColor; targetEl.style.backgroundColor = targetColor;
+                            document.getElementById('game1-wait-msg').style.display = 'none'; document.getElementById('game1-buttons').style.pointerEvents = 'auto'; this.startTime = Date.now();
+                            this.roundTimeoutId = setTimeout(() => this.handleTimeout(), 10000);
+                        }, Math.random() * 1500 + 500);
+                    },
+                    handleTimeout() { if (!this.startTime) return; this.startTime = 0; this.app.showFeedback('انتهى الوقت!', 'red'); this.results.push({ time: 10000, correct: false }); this.updateResultsTable(); this.nextRound(); },
+                    checkAnswer(color) {
+                        if (!this.startTime) return; this.clearTimers();
+                        const isCorrect = color === document.getElementById('game1-target-color').dataset.color;
+                        const reactionTime = Date.now() - this.startTime; this.startTime = 0;
+                        const resultTime = isCorrect ? reactionTime : 10000;
+                        this.app.showFeedback(isCorrect ? this.app.formatReactionTime(reactionTime) : 'خطأ!', isCorrect ? 'green' : 'red');
+                        this.results.push({ time: resultTime, correct: isCorrect });
+                        this.updateResultsTable(); this.nextRound();
+                    },
+                    updateResultsTable() {
+                        let html = `<table class="w-full text-center bg-gray-800 rounded-lg"><thead><tr class="text-yellow-400"><th class="p-2">الجولة</th><th class="p-2">النتيجة</th></tr></thead><tbody>`;
+                        this.results.forEach((r, i) => { html += `<tr class="border-t border-gray-700 ${r.correct ? 'text-green-400' : 'text-red-400'}"><td class="p-2">${i+1}</td><td class="p-2 font-bold">${this.app.formatReactionTime(r.time)}${!r.correct ? ' (عقوبة)' : ''}</td></tr>`; });
+                        document.getElementById('game1-results-table').innerHTML = html + '</tbody></table>';
+                    },
+                    end() { this.clearTimers(); const avgTime = this.results.length ? Math.round(this.results.reduce((sum, r) => sum + r.time, 0) / this.results.length) : 0; this.app.endGame(avgTime, `متوسط استجابتك ${this.app.formatReactionTime(avgTime, true)} (شاملاً العقوبات).`, "نتيجة ردة الفعل", this.results); }
                 },
-
-                nextRound() {
-                    this.round++;
-                    if (this.round > this.totalRounds) {
-                        this.end();
-                        return;
-                    }
-                    
-                    document.getElementById('game1-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
-                    const targetEl = document.getElementById('game1-target-color');
-                    const waitMsg = document.getElementById('game1-wait-msg');
-                    targetEl.style.backgroundColor = '#1a202c';
-                    waitMsg.style.display = 'block';
-                    document.getElementById('game1-buttons').style.pointerEvents = 'none';
-
-                    this.timeoutId = setTimeout(() => {
-                        this.targetColor = this.colors[Math.floor(Math.random() * this.colors.length)];
-                        targetEl.style.backgroundColor = this.targetColor === 'yellow' ? '#f6e05e' : this.targetColor;
-                         targetEl.style.backgroundColor = this.targetColor === 'cyan' ? '#0891b2' : targetEl.style.backgroundColor;
-                        waitMsg.style.display = 'none';
-                        document.getElementById('game1-buttons').style.pointerEvents = 'auto';
+                game2: {
+                    score: 0, timer: 30, intervalId: null, colors: ['#ef4444', '#3b82f6', '#22c55e', '#eab308', '#8b5cf6', '#0891b2', '#f97316', '#ec4899'], colorNames: { '#ef4444': 'الأحمر', '#3b82f6': 'الأزرق', '#22c55e': 'الأخضر', '#eab308': 'الأصفر', '#8b5cf6': 'البنفسجي', '#0891b2': 'السماوي', '#f97316': 'البرتقالي', '#ec4899': 'الوردي' },
+                    clearTimers() { clearInterval(this.intervalId); },
+                    start() {
+                        this.score = 0; this.timer = 30;
+                        document.getElementById('game2-score').textContent = this.score; document.getElementById('game2-timer').textContent = this.timer; this.nextRound();
+                        this.intervalId = setInterval(() => { if (--this.timer <= 0) this.end(); document.getElementById('game2-timer').textContent = this.timer; }, 1000);
+                    },
+                    nextRound() {
+                        const container = document.getElementById('game2-shape-container'); container.innerHTML = '';
+                        const types = ['size_bigger', 'size_smaller', 'color']; const type = types[Math.floor(Math.random() * types.length)];
+                        let correctValue, shapes = [];
+                        if (type.startsWith('size')) {
+                            document.getElementById('game2-instruction').textContent = type === 'size_bigger' ? "اختر الشكل الأكبر حجماً" : "اختر الشكل الأصغر حجماً";
+                            let sizes = new Set(); while(sizes.size < 6) sizes.add(Math.floor(Math.random() * 60) + 35);
+                            let sizeArr = [...sizes]; correctValue = type === 'size_bigger' ? Math.max(...sizeArr) : Math.min(...sizeArr);
+                            let colorArr = [...this.colors].sort(() => 0.5 - Math.random());
+                            for(let i=0; i<6; i++) shapes.push({ size: sizeArr[i], color: colorArr[i], value: sizeArr[i] });
+                        } else {
+                            let targetColor = this.colors[Math.floor(Math.random() * this.colors.length)]; correctValue = targetColor;
+                            document.getElementById('game2-instruction').textContent = `اختر الشكل ${this.colorNames[targetColor]}`;
+                            let otherColors = this.colors.filter(c => c !== targetColor).sort(() => 0.5 - Math.random());
+                            let finalColors = [targetColor, ...otherColors.slice(0, 5)].sort(() => 0.5 - Math.random());
+                            for(let i=0; i<6; i++) shapes.push({ size: Math.floor(Math.random() * 60) + 35, color: finalColors[i], value: finalColors[i] });
+                        }
+                        shapes.forEach(s => { const shape = this.createShape(s.size, s.color); shape.onclick = () => this.checkAnswer(s.value, correctValue); container.appendChild(shape); });
+                    },
+                    createShape(size, color) { const el = document.createElement('div'); el.className = 'shape rounded-lg'; el.style.cssText = `width:${size}px; height:${size}px; background-color:${color};`; return el; },
+                    checkAnswer(val, correctVal) { if (val === correctVal) { this.score++; this.app.showFeedback('+1 نقطة!', 'green'); } else { this.app.showFeedback('خطأ!', 'red'); } document.getElementById('game2-score').textContent = this.score; this.nextRound(); },
+                    end() { this.clearTimers(); this.app.endGame(this.score, `أحرزت ${this.score} نقطة في 30 ثانية!`, "نتيجة تحدي الأكبر والأصغر"); }
+                },
+                game3: {
+                    round: 0, totalRounds: 5, targetTime: 0, startTime: 0, timerInterval: null, results: [],
+                    clearTimers() { clearInterval(this.timerInterval); },
+                    start() { this.round = 0; this.results = []; document.getElementById('game3-results-table').innerHTML = ''; this.nextRound(); },
+                    nextRound() {
+                        if (++this.round > this.totalRounds) { this.end(); return; }
+                        document.getElementById('game3-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
+                        this.targetTime = (Math.random() * 7 + 3).toFixed(2);
+                        document.getElementById('game3-target-time').textContent = this.targetTime;
+                        const btn = document.getElementById('game3-action-btn');
+                        btn.textContent = '▶️ ابدأ العداد'; btn.className = 'w-full p-4 text-3xl font-black rounded-lg transition bg-green-500 hover:bg-green-600';
+                        btn.onclick = () => this.startTimer();
+                    },
+                    startTimer() {
                         this.startTime = Date.now();
-                    }, Math.random() * 2000 + 1000);
+                        const btn = document.getElementById('game3-action-btn');
+                        btn.textContent = '⏹️ أوقف العداد!'; btn.className = 'w-full p-4 text-3xl font-black rounded-lg transition bg-red-500 hover:bg-red-600';
+                        btn.onclick = () => this.stopTimer();
+                        this.timerInterval = setInterval(() => { const elapsed = ((Date.now() - this.startTime) / 1000).toFixed(2); document.getElementById('game3-timer-display').textContent = elapsed; if (elapsed >= 15) this.stopTimer(); }, 10);
+                    },
+                    stopTimer() { this.clearTimers(); const diff = Math.abs(((Date.now() - this.startTime) / 1000) - this.targetTime); let evaluation; if (diff <= 0.05) evaluation = 'ممتاز! 🎯'; else if (diff <= 0.1) evaluation = 'قريب جداً! 🔥'; else if (diff <= 0.25) evaluation = 'جيد 👍'; else evaluation = 'بعيد ❌'; this.results.push({ diff: (diff*1000).toFixed(0), eval: evaluation }); this.updateResultsTable(); const btn = document.getElementById('game3-action-btn'); btn.textContent = 'الجولة التالية...'; btn.onclick = () => this.nextRound(); },
+                    updateResultsTable() { let html = `<table class="w-full text-center bg-gray-800 rounded-lg mt-4"><thead><tr class="text-yellow-400"><th class="p-2">الجولة</th><th class="p-2">الفرق (م.ث)</th><th class="p-2">التقييم</th></tr></thead><tbody>`; this.results.forEach((r, i) => { html += `<tr class="border-t border-gray-700"><td class="p-2">${i+1}</td><td class="p-2 font-mono">${r.diff}</td><td class="p-2 font-bold">${r.eval}</td></tr>`; }); document.getElementById('game3-results-table').innerHTML = html + '</tbody></table>'; },
+                    end() { const avgDiff = this.results.length ? Math.round(this.results.reduce((s, r) => s + parseInt(r.diff), 0) / this.results.length) : 0; this.app.endGame(avgDiff, `متوسط فرق توقيت ${this.app.formatReactionTime(avgDiff, true)}.`, "نتيجة التوقيت المثالي", this.results); }
                 },
-
-                checkAnswer(color) {
-                    if(this.startTime === 0) return;
-                    
-                    const reactionTime = Date.now() - this.startTime;
-                    this.startTime = 0; // Prevent multiple clicks
-
-                    const feedbackEl = document.getElementById('game1-feedback');
-                    feedbackEl.textContent = `${reactionTime} م.ث`;
-                    feedbackEl.classList.remove('feedback-animation');
-                    void feedbackEl.offsetWidth; // Trigger reflow
-                    feedbackEl.classList.add('feedback-animation');
-
-                    let result;
-                    if (color === this.targetColor) {
-                        result = { round: this.round, time: reactionTime, correct: true };
-                    } else {
-                        result = { round: this.round, time: 'خطأ', correct: false };
-                    }
-                    this.results.push(result);
-                    this.updateResultsTable();
-                    
-                    this.nextRound();
+                game4: {
+                    round: 0, totalRounds: 10, score: 0, startTime: 0, colors: { 'أحمر': '#ef4444', 'أخضر': '#22c55e', 'أزرق': '#3b82f6', 'أصفر': '#eab308', 'بنفسجي': '#8b5cf6', 'برتقالي': '#f97316', 'سماوي': '#0891b2', 'أسود': '#1f2937' },
+                    clearTimers() {},
+                    start() { this.round = 0; this.score = 0; this.updateScoreDisplay(); this.nextRound(); },
+                    updateScoreDisplay() { document.getElementById('game4-score').textContent = this.score; },
+                    nextRound() {
+                        if (++this.round > this.totalRounds) { this.end(); return; }
+                        document.getElementById('game4-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
+                        const colorNames = Object.keys(this.colors); const targetWord = colorNames[Math.floor(Math.random() * colorNames.length)];
+                        let displayColorName; do { displayColorName = colorNames[Math.floor(Math.random() * colorNames.length)]; } while (displayColorName === targetWord);
+                        const wordEl = document.getElementById('game4-target-word'); wordEl.textContent = targetWord; wordEl.style.color = this.colors[displayColorName];
+                        const buttonsEl = document.getElementById('game4-buttons'); buttonsEl.innerHTML = '';
+                        colorNames.sort(() => 0.5 - Math.random()).forEach(name => { const btn = document.createElement('button'); btn.textContent = name; btn.className = "p-4 rounded-lg text-lg md:text-xl font-bold transition"; btn.style.backgroundColor = this.colors[name]; btn.style.color = ['أسود', 'بنفسجي', 'أزرق'].includes(name) ? 'white' : 'black'; btn.onclick = () => this.checkAnswer(name, targetWord); buttonsEl.appendChild(btn); });
+                        this.startTime = Date.now();
+                    },
+                    checkAnswer(selectedWord, targetWord) {
+                        if (!this.startTime) return; const reactionTime = Date.now() - this.startTime; this.startTime = 0;
+                        if (selectedWord === targetWord) { const points = Math.max(0, 2000 - reactionTime); this.score += Math.round(points); this.app.showFeedback(`+${Math.round(points)} نقطة!`, 'green'); } 
+                        else { this.app.showFeedback('خطأ! ❌', 'red'); }
+                        this.updateScoreDisplay(); this.nextRound();
+                    },
+                    end() { this.app.endGame(this.score, `لقد أحرزت ${this.score} نقطة!`, "نتيجة تحدي الكلمة"); }
                 },
-
-                updateResultsTable() {
-                    const tableEl = document.getElementById('game1-results-table');
-                    let tableHTML = `
-                        <table class="w-full text-center bg-gray-800 rounded-lg">
-                            <thead><tr class="text-yellow-400"><th class="p-2">الجولة</th><th class="p-2">النتيجة</th></tr></thead>
-                            <tbody>
-                    `;
-                    this.results.forEach(r => {
-                        const rowClass = r.correct ? 'text-green-400' : 'text-red-400';
-                        const timeDisplay = r.correct ? `${r.time} م.ث` : '❌';
-                        tableHTML += `<tr class="border-t border-gray-700 ${rowClass}"><td class="p-2">${r.round}</td><td class="p-2 font-bold">${timeDisplay}</td></tr>`;
-                    });
-                    tableHTML += '</tbody></table>';
-                    tableEl.innerHTML = tableHTML;
-                },
-
-                end() {
-                    clearTimeout(this.timeoutId);
-                    const correctAnswers = this.results.filter(r => r.correct);
-                    const avgTime = correctAnswers.length > 0
-                        ? Math.round(correctAnswers.reduce((sum, r) => sum + r.time, 0) / correctAnswers.length)
-                        : 0;
-
-                    const message = `أنهيت التحدي بمتوسط سرعة استجابة قدره ${avgTime} مللي ثانية. كلما انخفض الرقم، كان أفضل! تدرب أكثر مع قفازات كيبر ون لتصل لسرعة البرق!`;
-                    app.endGame(avgTime, message, "نتيجة ردة الفعل");
+                game5: {
+                    players: [{}, {}], round: 0, totalRounds: 10,
+                    opposites: { 'white': 'black', 'black': 'white', '#ef4444': '#3b82f6', '#3b82f6': '#ef4444', '#eab308': '#22c55e', '#22c55e': '#eab308', '#8b5cf6': '#0891b2', '#0891b2': '#8b5cf6' },
+                    colors: ['white', 'black', '#ef4444', '#3b82f6', '#eab308', '#22c55e', '#8b5cf6', '#0891b2'],
+                    clearTimers() {},
+                    start() {
+                        const p1 = document.getElementById('player1-name').value.trim(); const p2 = document.getElementById('player2-name').value.trim();
+                        if (!p1 || !p2) { alert("الرجاء إدخال أسماء الحارسين"); return; }
+                        this.players = [{ name: p1, score: 0 }, { name: p2, score: 0 }]; this.round = 0;
+                        document.getElementById('p1-choice-btn').textContent = p1; document.getElementById('p2-choice-btn').textContent = p2;
+                        document.getElementById('game5-setup').classList.add('hidden'); document.getElementById('game5-play').classList.remove('hidden');
+                        this.nextRound();
+                    },
+                    updateScores() { document.getElementById('player1-score').textContent = `${this.players[0].name}: ${this.players[0].score}`; document.getElementById('player2-score').textContent = `${this.players[1].name}: ${this.players[1].score}`; },
+                    nextRound() {
+                        if (++this.round > this.totalRounds) { this.end(); return; }
+                        this.updateScores();
+                        document.getElementById('game5-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
+                        const currentColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+                        document.getElementById('game5-target-color').dataset.color = currentColor; document.getElementById('game5-target-color').style.backgroundColor = currentColor;
+                        const buttonsEl = document.getElementById('game5-buttons'); buttonsEl.innerHTML = '';
+                        this.colors.sort(() => 0.5 - Math.random()).forEach(color => { const btn = document.createElement('button'); btn.className = "w-20 h-20 rounded-lg border-2"; btn.style.backgroundColor = color; btn.style.borderColor = color === 'white' ? 'black' : 'white'; btn.onclick = () => this.checkAnswer(color); buttonsEl.appendChild(btn); });
+                    },
+                    checkAnswer(selectedColor) {
+                        const currentColor = document.getElementById('game5-target-color').dataset.color;
+                        const target = this.opposites[currentColor] || Object.keys(this.opposites).find(k => this.opposites[k] === currentColor);
+                        this.isCorrect = selectedColor === target;
+                        document.getElementById('game5-player-choice').classList.add('flex'); document.getElementById('game5-player-choice').classList.remove('hidden');
+                    },
+                    selectPlayer(playerIndex) {
+                        if (this.isCorrect) { this.players[playerIndex].score++; this.app.showFeedback(`نقطة لـ ${this.players[playerIndex].name}!`, 'green'); } 
+                        else { this.app.showFeedback(`إجابة خاطئة!`, 'red'); }
+                        document.getElementById('game5-player-choice').classList.add('hidden'); document.getElementById('game5-player-choice').classList.remove('flex');
+                        this.nextRound();
+                    },
+                    end() { let message; if (this.players[0].score > this.players[1].score) message = `البطل هو ${this.players[0].name} بنتيجة ${this.players[0].score}-${this.players[1].score}!`; else if (this.players[1].score > this.players[0].score) message = `البطل هو ${this.players[1].name} بنتيجة ${this.players[1].score}-${this.players[0].score}!`; else message = `تعادل بنتيجة ${this.players[0].score}!`; alert(message); this.app.showPage('page-menu'); }
                 }
-            },
-            game2: {
-                score: 0,
-                timer: 30,
-                intervalId: null,
-
-                start() {
-                    this.score = 0;
-                    this.timer = 30;
-                    document.getElementById('game2-score').textContent = this.score;
-                    this.nextRound();
-                    this.intervalId = setInterval(() => {
-                        this.timer--;
-                        document.getElementById('game2-timer').textContent = this.timer;
-                        if (this.timer <= 0) {
-                            this.end();
-                        }
-                    }, 1000);
-                },
-                
-                nextRound() {
-                    const instructionEl = document.getElementById('game2-instruction');
-                    const containerEl = document.getElementById('game2-shape-container');
-                    containerEl.innerHTML = '';
-
-                    const isBigger = Math.random() > 0.5;
-                    instructionEl.textContent = isBigger ? "اضغط على الشكل الأكبر حجماً" : "اضغط على الشكل الأصغر حجماً";
-
-                    const size1 = Math.floor(Math.random() * 80) + 50; // 50 to 130
-                    let size2;
-                    do {
-                        size2 = Math.floor(Math.random() * 80) + 50;
-                    } while(Math.abs(size1 - size2) < 20); // Ensure noticeable difference
-
-                    const colors = ['#ef4444', '#3b82f6', '#22c55e', '#eab308', '#8b5cf6'];
-                    const color1 = colors[Math.floor(Math.random() * colors.length)];
-                    let color2;
-                    do {
-                        color2 = colors[Math.floor(Math.random() * colors.length)];
-                    } while(color1 === color2);
-
-                    const shape1 = this.createShape(size1, color1);
-                    const shape2 = this.createShape(size2, color2);
-
-                    const correctSize = isBigger ? Math.max(size1, size2) : Math.min(size1, size2);
-
-                    shape1.onclick = () => this.checkAnswer(size1, correctSize);
-                    shape2.onclick = () => this.checkAnswer(size2, correctSize);
-
-                    if(Math.random() > 0.5) {
-                        containerEl.appendChild(shape1);
-                        containerEl.appendChild(shape2);
-                    } else {
-                        containerEl.appendChild(shape2);
-                        containerEl.appendChild(shape1);
-                    }
-                },
-
-                createShape(size, color) {
-                    const shape = document.createElement('div');
-                    shape.className = 'shape rounded-lg';
-                    shape.style.width = `${size}px`;
-                    shape.style.height = `${size}px`;
-                    shape.style.backgroundColor = color;
-                    return shape;
-                },
-
-                checkAnswer(selectedSize, correctSize) {
-                    if (selectedSize === correctSize) {
-                        this.score++;
-                        app.showFeedback('صحيح! 🔥', 'green');
-                    } else {
-                        app.showFeedback('خطأ!  집중! (ركز!)', 'red');
-                    }
-                    document.getElementById('game2-score').textContent = this.score;
-                    this.nextRound();
-                },
-                
-                end() {
-                    clearInterval(this.intervalId);
-                    const message = `تمكنت من تحقيق ${this.score} نقطة! التركيز واتخاذ القرار السريع هما مفتاح التميز، تماماً مثل جودة قفازات كيبر ون.`;
-                    app.endGame(this.score, message, "نتيجة لعبة التركيز");
-                }
-            },
-            game3: {
-                round: 0,
-                totalRounds: 5,
-                targetTime: 0,
-                startTime: 0,
-                timerInterval: null,
-                results: [],
-
-                start() {
-                    this.round = 0;
-                    this.results = [];
-                    document.getElementById('game3-results-table').innerHTML = '';
-                    this.nextRound();
-                },
-                
-                nextRound() {
-                    this.round++;
-                    if (this.round > this.totalRounds) {
-                        this.end();
-                        return;
-                    }
-                    document.getElementById('game3-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
-                    this.targetTime = (Math.random() * 7 + 3).toFixed(2); // 3.00 to 10.00
-                    document.getElementById('game3-target-time').textContent = this.targetTime;
-                    document.getElementById('game3-timer-display').textContent = '0.00';
-                    document.getElementById('game3-timer-bar-inner').style.width = '0%';
-                    
-                    const btn = document.getElementById('game3-action-btn');
-                    btn.textContent = '▶️ ابدأ العداد';
-                    btn.className = 'w-full p-4 text-3xl font-black rounded-lg transition bg-green-500 hover:bg-green-600';
-                    btn.onclick = () => this.startTimer();
-                },
-
-                startTimer() {
-                    this.startTime = Date.now();
-                    const btn = document.getElementById('game3-action-btn');
-                    btn.textContent = '⏹️ أوقف العداد!';
-                    btn.className = 'w-full p-4 text-3xl font-black rounded-lg transition bg-red-500 hover:bg-red-600';
-                    btn.onclick = () => this.stopTimer();
-
-                    this.timerInterval = setInterval(() => {
-                        const elapsedTime = ((Date.now() - this.startTime) / 1000).toFixed(2);
-                        document.getElementById('game3-timer-display').textContent = elapsedTime;
-                        document.getElementById('game3-timer-bar-inner').style.width = `${(elapsedTime / 15) * 100}%`;
-                        if (elapsedTime >= 15) {
-                            this.stopTimer();
-                        }
-                    }, 10);
-                },
-                
-                stopTimer() {
-                    clearInterval(this.timerInterval);
-                    this.timerInterval = null;
-                    const endTime = ((Date.now() - this.startTime) / 1000);
-                    document.getElementById('game3-timer-display').textContent = endTime.toFixed(2);
-                    
-                    const difference = Math.abs(endTime - this.targetTime);
-                    let evaluation;
-                    if (difference <= 0.05) evaluation = { text: 'ممتاز! توقيت مثالي 🎯', score: 100 };
-                    else if (difference <= 0.1) evaluation = { text: 'قريب جداً! 🔥', score: 75 };
-                    else if (difference <= 0.25) evaluation = { text: 'ردة فعل عادية 👍', score: 50 };
-                    else if (difference <= 0.5) evaluation = { text: 'قريبة قليلاً', score: 25 };
-                    else evaluation = { text: 'توقيت سيء ❌', score: 0 };
-                    
-                    this.results.push({ round: this.round, diff: (difference*1000).toFixed(0), eval: evaluation.text, score: evaluation.score });
-                    this.updateResultsTable();
-
-                    const btn = document.getElementById('game3-action-btn');
-                    btn.textContent = 'الجولة التالية...';
-                    btn.className = 'w-full p-4 text-3xl font-black rounded-lg transition bg-gray-600';
-                    btn.onclick = () => this.nextRound();
-                },
-
-                updateResultsTable() {
-                    const tableEl = document.getElementById('game3-results-table');
-                     let tableHTML = `
-                        <table class="w-full text-center bg-gray-800 rounded-lg mt-4">
-                            <thead><tr class="text-yellow-400"><th class="p-2">الجولة</th><th class="p-2">الفرق (م.ث)</th><th class="p-2">التقييم</th></tr></thead>
-                            <tbody>
-                    `;
-                    this.results.forEach(r => {
-                        tableHTML += `<tr class="border-t border-gray-700"><td class="p-2">${r.round}</td><td class="p-2 font-mono">${r.diff}</td><td class="p-2 font-bold">${r.eval}</td></tr>`;
-                    });
-                    tableHTML += '</tbody></table>';
-                    tableEl.innerHTML = tableHTML;
-                },
-
-                end() {
-                    const totalScore = this.results.reduce((sum, r) => sum + r.score, 0);
-                    const avgDifference = this.results.reduce((sum, r) => sum + parseInt(r.diff), 0) / this.totalRounds;
-                    const message = `أنهيت التحدي بإجمالي ${totalScore} نقطة. الدقة هي سلاح الحارس المحترف، وقفازات كيبر ون تمنحك الثقة لتحقيقها.`;
-                    app.endGame(Math.round(avgDifference), message, "نتيجة التوقيت المثالي");
-                }
-            },
-            game4: {
-                round: 0,
-                totalRounds: 10,
-                score: 0,
-                colors: { 'أحمر': '#ef4444', 'أخضر': '#22c55e', 'أزرق': '#3b82f6', 'أصفر': '#eab308', 'بنفسجي': '#8b5cf6', 'برتقالي': '#f97316' },
-                results: [],
-                
-                start() {
-                    this.round = 0;
-                    this.score = 0;
-                    this.results = [];
-                    document.getElementById('game4-results-table').innerHTML = '';
-                    this.nextRound();
-                },
-
-                nextRound() {
-                    this.round++;
-                    if (this.round > this.totalRounds) {
-                        this.end();
-                        return;
-                    }
-                    document.getElementById('game4-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
-                    
-                    const colorNames = Object.keys(this.colors);
-                    const targetWord = colorNames[Math.floor(Math.random() * colorNames.length)];
-                    let displayColorName;
-                    do {
-                        displayColorName = colorNames[Math.floor(Math.random() * colorNames.length)];
-                    } while (displayColorName === targetWord);
-
-                    const wordEl = document.getElementById('game4-target-word');
-                    wordEl.textContent = targetWord;
-                    wordEl.style.color = this.colors[displayColorName];
-
-                    const buttonsEl = document.getElementById('game4-buttons');
-                    buttonsEl.innerHTML = '';
-                    const shuffledColors = colorNames.sort(() => 0.5 - Math.random());
-
-                    shuffledColors.forEach(name => {
-                        const btn = document.createElement('button');
-                        btn.textContent = name;
-                        btn.className = "p-4 rounded-lg text-xl font-bold transition";
-                        btn.style.backgroundColor = this.colors[name];
-                        btn.onclick = () => this.checkAnswer(name, targetWord);
-                        buttonsEl.appendChild(btn);
-                    });
-                },
-                
-                checkAnswer(selectedWord, targetWord) {
-                    const correct = selectedWord === targetWord;
-                    if (correct) {
-                        this.score++;
-                        app.showFeedback('صحيح! تركيز عالي 🧠', 'green');
-                    } else {
-                        app.showFeedback('خطأ! انتبه للكلمة', 'red');
-                    }
-                    this.results.push({ round: this.round, correct });
-                    this.updateResultsTable();
-                    this.nextRound();
-                },
-                 updateResultsTable() {
-                    const tableEl = document.getElementById('game4-results-table');
-                    let tableHTML = `
-                        <table class="w-full text-center bg-gray-800 rounded-lg mt-4">
-                            <thead><tr class="text-yellow-400"><th class="p-2">الجولة</th><th class="p-2">النتيجة</th></tr></thead>
-                            <tbody>
-                    `;
-                    this.results.forEach(r => {
-                        const resultText = r.correct ? '✅ صحيح' : '❌ خطأ';
-                        const rowClass = r.correct ? 'text-green-400' : 'text-red-400';
-                        tableHTML += `<tr class="border-t border-gray-700 ${rowClass}"><td class="p-2">${r.round}</td><td class="p-2 font-bold">${resultText}</td></tr>`;
-                    });
-                    tableHTML += '</tbody></table>';
-                    tableEl.innerHTML = tableHTML;
-                },
-
-                end() {
-                    const message = `لقد أحرزت ${this.score} من ${this.totalRounds}! قوة الملاحظة والتركيز الذهني هي ما يميز حارس المرمى الأسطوري.`;
-                    app.endGame(this.score, message, "نتيجة تحدي الكلمة");
-                }
-            },
-            game5: {
-                players: [{name: '', score: 0}, {name: '', score: 0}],
-                round: 0,
-                totalRounds: 10,
-                currentColor: '',
-                opposites: { 'white': 'black', 'black': 'white', 'red': '#ef4444', '#ef4444': '#3b82f6', 'blue': '#3b82f6', '#3b82f6': '#ef4444', 'yellow': '#eab308', '#eab308': '#22c55e', 'green': '#22c55e', '#22c55e': '#eab308' },
-                colors: ['white', 'black', '#ef4444', '#3b82f6', '#eab308', '#22c55e'],
-
-                start() {
-                    const p1 = document.getElementById('player1-name').value.trim();
-                    const p2 = document.getElementById('player2-name').value.trim();
-                    if (!p1 || !p2) {
-                        alert("الرجاء إدخال أسماء الحارسين");
-                        return;
-                    }
-                    this.players[0] = { name: p1, score: 0 };
-                    this.players[1] = { name: p2, score: 0 };
-                    this.round = 0;
-                    
-                    document.getElementById('player1-score').textContent = `${p1}: 0`;
-                    document.getElementById('player2-score').textContent = `${p2}: 0`;
-                    document.getElementById('p1-choice-btn').textContent = p1;
-                    document.getElementById('p2-choice-btn').textContent = p2;
-
-                    document.getElementById('game5-setup').classList.add('hidden');
-                    document.getElementById('game5-play').classList.remove('hidden');
-                    
-                    this.nextRound();
-                },
-
-                nextRound() {
-                    this.round++;
-                    if (this.round > this.totalRounds) {
-                        this.end();
-                        return;
-                    }
-                    document.getElementById('game5-round').textContent = `الجولة ${this.round} / ${this.totalRounds}`;
-                    this.currentColor = this.colors[Math.floor(Math.random() * this.colors.length)];
-                    document.getElementById('game5-target-color').style.backgroundColor = this.currentColor;
-
-                    const buttonsEl = document.getElementById('game5-buttons');
-                    buttonsEl.innerHTML = '';
-                    this.colors.forEach(color => {
-                        const btn = document.createElement('button');
-                        btn.className = "w-20 h-20 rounded-lg border-2";
-                        btn.style.backgroundColor = color;
-                        btn.style.borderColor = color === 'white' ? 'black' : 'white';
-                        btn.onclick = () => this.checkAnswer(color);
-                        buttonsEl.appendChild(btn);
-                    });
-                },
-
-                checkAnswer(selectedColor) {
-                    this.correctAnswer = this.opposites[this.currentColor];
-                    this.isCorrect = selectedColor === this.correctAnswer;
-                    document.getElementById('game5-player-choice').classList.add('flex');
-                    document.getElementById('game5-player-choice').classList.remove('hidden');
-                },
-                
-                selectPlayer(playerIndex) {
-                    if (this.isCorrect) {
-                        this.players[playerIndex].score++;
-                        app.showFeedback(`نقطة لـ ${this.players[playerIndex].name}! 🥅`, 'green');
-                    } else {
-                        app.showFeedback(`إجابة خاطئة! حاول مجدداً`, 'red');
-                    }
-                    document.getElementById(`player${playerIndex + 1}-score`).textContent = `${this.players[playerIndex].name}: ${this.players[playerIndex].score}`;
-                    
-                    document.getElementById('game5-player-choice').classList.add('hidden');
-                    document.getElementById('game5-player-choice').classList.remove('flex');
-
-                    this.nextRound();
-                },
-
-                end() {
-                     let winner, message;
-                    if (this.players[0].score > this.players[1].score) {
-                        winner = this.players[0];
-                        message = `البطل هو ${winner.name} بنتيجة ${this.players[0].score} مقابل ${this.players[1].score}! منافسة قوية تليق بالأبطال.`;
-                    } else if (this.players[1].score > this.players[0].score) {
-                        winner = this.players[1];
-                         message = `البطل هو ${winner.name} بنتيجة ${this.players[1].score} مقابل ${this.players[0].score}! أداء استثنائي!`;
-                    } else {
-                        message = `تعادل! كلا الحارسين أظهرا أداءً رائعاً بنتيجة ${this.players[0].score}.`;
-                    }
-                    
-                    alert(message);
-                    app.showPage('page-menu');
-                }
-            },
-
-            // دالة مساعدة لإظهار رسائل تفاعلية
-            showFeedback(text, color) {
-                const feedbackEl = document.createElement('div');
-                feedbackEl.textContent = text;
-                feedbackEl.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-black p-4 rounded-lg shadow-lg z-50';
-                feedbackEl.style.backgroundColor = color === 'green' ? 'rgba(34, 197, 94, 0.9)' : 'rgba(239, 68, 68, 0.9)';
-                feedbackEl.style.color = 'white';
-                feedbackEl.style.animation = 'feedback-pop 1.5s ease-out forwards';
-                document.body.appendChild(feedbackEl);
-                setTimeout(() => {
-                    feedbackEl.remove();
-                }, 1500);
             }
         };
-
-        // جعل كائن التطبيق متاحًا عالميًا حتى تعمل سمات onclick
+        Object.values(app.games).forEach(game => game.app = app);
         window.app = app;
     </script>
 </body>
 </html>
-
